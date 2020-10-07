@@ -10,3 +10,9 @@ def index(request):
     template = loader.get_template('donations/index.html')
     context = {}
     return HttpResponse(template.render(context, request))
+
+def login(request):
+    template = loader.get_template('donations/googlelogin.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
+
