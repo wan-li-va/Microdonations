@@ -16,7 +16,7 @@
     <li><a href="">Tasks</a></li>
     <li><a href="">Contact us</a></li>
   
-    <li class="dropdown right">
+    <li class="dropdown left">
       <a href="javascript:void(0)" class="dropbtn">Profile Information </i></a>
       <div class="dropdown-content">
         <a href="">Profile</a>
@@ -78,12 +78,19 @@ ul.topnav li.right {float: right;}
 }
 
 ul.topnav .dropdown-content {
-  display: none;
-  position: absolute;
-  color: black;
+    display: none;
+    position:absolute;
+    background-color: white;
+    min-width: 10px;
+    font-size:.9pc;
+
 }
 ul.topnav .dropdown-content a {
-  color: black;
+    color: black;
+    text-decoration: none;
+    display: block;
+    width: 165px;
+    font-size:.9pc;
 }
 ul.topnav .dropdown:hover > .dropdown-content {
   display: block;
