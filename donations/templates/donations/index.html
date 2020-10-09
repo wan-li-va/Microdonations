@@ -33,8 +33,10 @@
     <a href="/donations/login">Login</a>
   </div>
 
-  {% if user.is_authenticated %} Hi {{ user.username }}! {% else %}
-  <p>You are not logged in</p>
+  {% if user.is_authenticated %}
+  <div style="text-align: center">Hi {{ user.username }}!</div>
+  {% else %}
+  <div style="text-align: center"><p>You are not logged in</p></div>
   {% endif %}
 
   <style>
