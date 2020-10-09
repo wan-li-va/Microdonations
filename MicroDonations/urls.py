@@ -18,9 +18,9 @@ from django.urls import include, path
 from django.views.generic import TemplateView  # <--
 
 urlpatterns = [
-    # path('',
-    #      TemplateView.as_view(template_name="donations/login.html")),  # <--
+    path('',
+         TemplateView.as_view(template_name="donations/login.html")),  # <--
     path('admin/', admin.site.urls),
-    # path('accounts/', include('allauth.urls')),  # <--
+    path('accounts/', include('allauth.urls')),  # <--
     path('donations/', include('donations.urls')),
 ]
