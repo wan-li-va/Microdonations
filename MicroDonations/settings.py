@@ -26,7 +26,7 @@ SECRET_KEY = 'oe6&1cxt4r=rrs&&mfrzemmf4iq9$)lh7^x6nnv2x$sk^hrt(7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["https://project-2-18-micro-donations.herokuapp.com/"]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -134,7 +134,7 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-SITE_ID = 1
+#SITE_ID = 1
 LOGIN_REDIRECT_URL = '/donations'
 
 SOCIALACCOUNT_PROVIDERS = {
