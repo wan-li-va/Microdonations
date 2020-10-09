@@ -32,6 +32,11 @@
     <a href="">Contact us</a>
     <a href="/donations/login">Login</a>
   </div>
+
+  {% if user.is_authenticated %} Hi {{ user.username }}! {% else %}
+  <p>You are not logged in</p>
+  {% endif %}
+
   <style>
     .topnav {
       background-color: #333;
