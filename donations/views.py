@@ -13,6 +13,6 @@ def index(request):
 
 
 def login(request):
-    template = loader.get_template('donations/login.html')
+    template = loader.get_template('donations/googlelogin.html')
     context = {}
     return HttpResponse(template.render(context, request))
