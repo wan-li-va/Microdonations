@@ -16,3 +16,9 @@ def login(request):
     template = loader.get_template('donations/googlelogin.html')
     context = {}
     return HttpResponse(template.render(context, request))
+
+
+def profile(request):
+    template = loader.get_template('donations/profile.html')
+    context = {}
+    return HttpResponse(template.render(context, request))

@@ -8,4 +8,5 @@ app_name = 'donations'
 urlpatterns = [
     path('', views.index, name='index'),
     path('login/', views.login, name='login'),
+    path('profile/', views.profile, name='profile'),
 ]
