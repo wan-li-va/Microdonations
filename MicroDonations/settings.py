@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.sites',
     'donations.apps.DonationsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',
 
     'allauth',
     'allauth.account',
@@ -134,8 +134,8 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-SITE_ID = 1
-LOGIN_REDIRECT_URL = '/'
+SITE_ID = 3
+LOGIN_REDIRECT_URL = '/donations'
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
