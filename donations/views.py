@@ -21,3 +21,8 @@ def donations(request):
     template = loader.get_template('donations/listofdonations.html')
     context = {}
     return HttpResponse(template.render(context, request))
+
+def tasks(request):
+    template = loader.get_template('donations/listoftasks.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
