@@ -26,3 +26,9 @@ def tasks(request):
     template = loader.get_template('donations/listoftasks.html')
     context = {}
     return HttpResponse(template.render(context, request))
+
+def organization_form(request):
+    template = loader.get_template('donations/add_organization_form.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
+
