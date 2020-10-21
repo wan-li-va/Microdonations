@@ -1,7 +1,20 @@
-language: python
+# language: python
 
-install:
-  - pip3 install -r requirements.txt
-# command to run tests
-script:
-  - pytest
+# install:
+#   - pip3 install -r requirements.txt
+# # command to run tests
+# script:
+#   - pytest
+jobs:
+  include:
+    - stage: unit tests
+      script: echo one
+    - stage: unit tests
+      script: echo two
+    - stage: deploy to staging
+      script: skip
+      deploy: &heroku
+        provider: heroku
+        app: sf-stages-staging
+        api_key: $HEROKU_AUTH_TOKEN
+        on: sf-stages-demo
