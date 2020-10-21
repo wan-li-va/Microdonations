@@ -176,124 +176,40 @@ a:hover {
     <div class="form-container container center" style="width:800px; margin-top: 100px; margin-left:320px;"  >
         <h2 style="font-family:sans-serif; text-align:center;">Organizations</h2>
         <div class="row row-cols-1 row-cols-md-2">
-            <div class="col mb-4">
-              <!-- Card -->
-              <div class="card">
-          
-                <!--Card image-->
-                <div class="view overlay">
-                  <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg"
-                    alt="Card image cap">
-                  <a href="#!">
-                    <div class="mask rgba-white-slight"></div>
-                  </a>
-                </div>
-          
-                <!--Card content-->
-                <div class="card-body">
-          
-                  <!--Title-->
-                  <h4 class="card-title">Organization 1</h4>
-                  <!--Text-->
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-                  <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                  <button type="button" class="btn btn-light-blue btn-md">Read more</button>
-          
-                </div>
-          
+        {% if list_of_organizations %}
+        {% for Organization in list_of_organizations %}
+          <div class="col mb-4">
+            <!-- Card -->
+            <div class="card">
+        
+              <!--Card image-->
+              <div class="view overlay">
+                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg"
+                  alt="Card image cap">
+                <a href="#!">
+                  <div class="mask rgba-white-slight"></div>
+                </a>
               </div>
-              <!-- Card -->
-            </div>
-            <div class="col mb-4">
-              <!-- Card -->
-              <div class="card">
-          
-                <!--Card image-->
-                <div class="view overlay">
-                  <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg"
-                    alt="Card image cap">
-                  <a href="#!">
-                    <div class="mask rgba-white-slight"></div>
-                  </a>
-                </div>
-          
-                <!--Card content-->
-                <div class="card-body">
-          
-                  <!--Title-->
-                  <h4 class="card-title">Organization 2</h4>
-                  <!--Text-->
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-                  <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                  <button type="button" class="btn btn-light-blue btn-md">Read more</button>
-          
-                </div>
-          
+        
+              <!--Card content-->
+              <div class="card-body">
+        
+                <!--Title-->
+                <h4 class="card-title">{{ Organization.organization_text }}</h4>
+                <!--Text-->
+                <p class="card-text">{{ Organization.description_text }}</p>
+                <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+                <button type="button" class="btn btn-light-blue btn-md">Read more</button>
+        
               </div>
-              <!-- Card -->
+        
             </div>
-            <div class="col mb-4">
-              <!-- Card -->
-              <div class="card">
-          
-                <!--Card image-->
-                <div class="view overlay">
-                  <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg"
-                    alt="Card image cap">
-                  <a href="#!">
-                    <div class="mask rgba-white-slight"></div>
-                  </a>
-                </div>
-          
-                <!--Card content-->
-                <div class="card-body">
-          
-                  <!--Title-->
-                  <h4 class="card-title">Organization 3</h4>
-                  <!--Text-->
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-                  <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                  <button type="button" class="btn btn-light-blue btn-md">Read more</button>
-          
-                </div>
-          
-              </div>
-              <!-- Card -->
-            </div>
-            <div class="col mb-4">
-              <!-- Card -->
-              <div class="card">
-          
-                <!--Card image-->
-                <div class="view overlay">
-                  <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg"
-                    alt="Card image cap">
-                  <a href="#!">
-                    <div class="mask rgba-white-slight"></div>
-                  </a>
-                </div>
-          
-                <!--Card content-->
-                <div class="card-body">
-          
-                  <!--Title-->
-                  <h4 class="card-title">Organization 4</h4>
-                  <!--Text-->
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-                  <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                  <button type="button" class="btn btn-light-blue btn-md">Read more</button>
-          
-                </div>
-          
-              </div>
-              <!-- Card -->
-            </div>
+            <!-- Card -->
           </div>
-        <div class="center" style="margin-top: 30px; margin-left: 30px;">
+        {% endfor %}
+        {% else %}
+           <p>No organizations are available.</p>
+        {% endif %}   
         </div>
 
     </div>
