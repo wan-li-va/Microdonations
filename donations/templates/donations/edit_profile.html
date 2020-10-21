@@ -166,13 +166,14 @@
     <body>
         
         {% if user.is_authenticated %}
-        <div style="text-align: center"><h1>Hi {{ user.username }}!</h1></div>
-        <div><h4>Bio:</h4>
-          <span>{{profile_bio}}</span></div>
-        <h4>Contact Info</h4>
-        <span>{{profile_phone}}</span>
-        <h4>Location</h4>
-        <span>{{profile_location}}</span>
+        <div style="text-align: center"><h1>Hi {{ user.username }} edit Your Profile!</h1></div>
+
+        <form method="POST">
+            {% csrf_token %}
+            <input type="submit" name="Submit">
+            {{form}}
+        </form>
+        
         {% else %}
         <div style="text-align: center"><p>You are not logged in</p></div>
         {% endif %}
