@@ -9,14 +9,10 @@ before_install:
 install:
   - pip3 install -r requirements.txt
 # # command to run tests
-script:
-  - pytest
 jobs:
   include:
     - stage: unit tests
-      script: echo one
-    - stage: unit tests
-      script: echo two
+      script: ptest
     # - stage: deploy to staging
     #   script: skip
     #   deploy: &heroku
