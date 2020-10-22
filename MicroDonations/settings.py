@@ -24,9 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'oe6&1cxt4r=rrs&&mfrzemmf4iq9$)lh7^x6nnv2x$sk^hrt(7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','https://project-2-18-micro-donations.herokuapp.com/']
+ALLOWED_HOSTS = ['127.0.0.1',
+                 'https://project-2-18-micro-donations.herokuapp.com/']
 
 
 # Application definition
