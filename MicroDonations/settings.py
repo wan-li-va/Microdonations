@@ -27,6 +27,7 @@ SECRET_KEY = 'oe6&1cxt4r=rrs&&mfrzemmf4iq9$)lh7^x6nnv2x$sk^hrt(7'
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    'https://micro-donations-cs3240.herokuapp.com/',
     "http://127.0.0.1:8000/"
 ]
 
