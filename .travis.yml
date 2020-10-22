@@ -1,4 +1,14 @@
 language: python
+python:
+  -2.7
+  -3.5
+  -3.6
+
+before_install:
+  - python --version
+  - pip install -U pip
+  - pip install -U pytest
+
 
 # install:
 #   - pip3 install -r requirements.txt
@@ -11,13 +21,13 @@ jobs:
       script: echo one
     - stage: unit tests
       script: echo two
-    - stage: deploy to staging
-      script: skip
-      deploy: &heroku
-        provider: heroku
-        app: sf-stages-staging
-        api_key: $HEROKU_AUTH_TOKEN
-        on: sf-stages-demo
+    # - stage: deploy to staging
+    #   script: skip
+    #   deploy: &heroku
+    #     provider: heroku
+    #     app: sf-stages-staging
+    #     api_key: $HEROKU_AUTH_TOKEN
+    #     on: sf-stages-demo
 #     - stage: test
 #        script: 'https://micro-donations-cs3240.herokuapp.com/'
 
