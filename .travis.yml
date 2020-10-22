@@ -18,3 +18,5 @@ jobs:
         app: sf-stages-staging
         api_key: $HEROKU_AUTH_TOKEN
         on: sf-stages-demo
+     - stage: test production
+        script: 'curl https://micro-donations-cs3240.herokuapp.com/'
