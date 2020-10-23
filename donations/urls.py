@@ -8,11 +8,8 @@ app_name = 'donations'
 urlpatterns = [
     path('', views.index, name='index'),
     path('login/', views.login, name='login'),
-<<<<<<< HEAD
-    path('donationslist/',views.donations, name='donations'),
-    path('taskslist/',views.tasks,name="tasks")
-=======
+    path('donationslist/', views.donations, name='donations'),
+    path('taskslist/', views.tasks, name="tasks"),
     path('profile/', views.profile, name='profile'),
     path('profile/edit', views.edit_profile, name='edit_profile'),
->>>>>>> profilePage
 ]

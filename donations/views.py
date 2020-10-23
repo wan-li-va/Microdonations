@@ -2,14 +2,11 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
 from django.urls import reverse
-<<<<<<< HEAD
 from .models import Organization, Task
-=======
 from django.shortcuts import get_object_or_404  # used for shortcut method
 from .models import Profile
 from .forms import ProfileForm
 from .forms import UserForm
->>>>>>> profilePage
 
 # Create your views here.
 
@@ -21,8 +18,8 @@ def index(request):
 
 def login(request):
     context = {}
-<<<<<<< HEAD
     return HttpResponse(template.render(context, request))
+
 
 def donations(request):
     list_of_organizations = Organization.objects.all()
@@ -32,6 +29,7 @@ def donations(request):
     }
     return HttpResponse(template.render(context, request))
 
+
 def tasks(request):
     list_of_tasks = Task.objects.all()
     template = loader.get_template('donations/listoftasks.html')
@@ -39,7 +37,6 @@ def tasks(request):
         'list_of_tasks': list_of_tasks,
     }
     return HttpResponse(template.render(context, request))
-=======
     return render(request, 'donations/googlelogin.html', context)
 
 
@@ -69,4 +66,3 @@ def edit_profile(request):
     context = {'user_form': user_form,
                'form': form}
     return render(request, 'donations/edit_profile.html', context)
->>>>>>> profilePage
