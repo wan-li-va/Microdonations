@@ -5,7 +5,7 @@
 
 <div>
     <h1>Add a new organization to the donations list!</h1>
-    <form method="post" action="list">
+    <form action="{% url 'donations:add_organization'%}" method="post" >
         {% csrf_token %}
         <div class="form-group">
             <label for="name">Name of the organization:</label>
