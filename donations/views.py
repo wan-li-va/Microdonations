@@ -66,3 +66,9 @@ def edit_profile(request):
     context = {'user_form': user_form,
                'form': form}
     return render(request, 'donations/edit_profile.html', context)
+
+
+def organizationform(request):
+    template = loader.get_template('donations/add_organization_form.html')
+    context = {}
+    return HttpResponse(template.render(context, request))

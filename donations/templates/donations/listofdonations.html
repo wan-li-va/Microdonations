@@ -175,6 +175,7 @@ a:hover {
     <!--Grid row-->
     <div class="form-container container center" style="width:800px; margin-top: 100px; margin-left:320px;"  >
         <h2 style="font-family:sans-serif; text-align:center;">Organizations</h2>
+        <a class="btn btn-primary" href="{% url 'organizationform' %}" role="button">Add Organization</a>
         <div class="row row-cols-1 row-cols-md-2">
         {% if list_of_organizations %}
         {% for Organization in list_of_organizations %}
@@ -217,7 +218,7 @@ a:hover {
 </body>
 <footer
 class="page-footer unique-color-dark"
-style="height: 100px; width: 1426px; background-color: black; color: white"
+style="height: 110px; width: 1430px; background-color: black; color: white"
 >
     <div class="footer-copyright" style="margin-top: 650px;">
     <small>Author: names</small><br /><small><a href="mailto:rvj8uc@virginia.edu">emails</a></small><br /><small>&copy; Copyright 2020, names</small>

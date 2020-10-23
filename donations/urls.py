@@ -12,4 +12,5 @@ urlpatterns = [
     path('taskslist/', views.tasks, name="tasks"),
     path('profile/', views.profile, name='profile'),
     path('profile/edit', views.edit_profile, name='edit_profile'),
+    path('organizationform/', views.organizationform, name="organizationform")
 ]
