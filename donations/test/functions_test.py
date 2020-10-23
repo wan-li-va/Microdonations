@@ -1,7 +1,7 @@
 #from django.test import TestCase
 import pytest
 
-from donations.functions import equals, sortByAlphabetical, calculateTotal
+from .functions import equals, sortByAlphabetical, calculateTotal
 
 # Create your tests here.
 class TestEquals(object):
