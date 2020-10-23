@@ -1,0 +1,26 @@
+language: python
+python:
+  - "3.5.6"
+
+before_install:
+  - python3 --version
+  - pip3 install -U pip
+  - pip3 install -U pytest
+install:
+  - pip3 install -r requirements.txt
+# # command to run tests
+jobs:
+  include:
+    - stage: unit tests
+      script: pytest
+
+    # - stage: deploy to staging
+    #   script: skip
+    #   deploy: &heroku
+    #     provider: heroku
+    #     app: sf-stages-staging
+    #     api_key: $HEROKU_AUTH_TOKEN
+    #     on: sf-stages-demo
+#     - stage: test
+#        script: 'https://micro-donations-cs3240.herokuapp.com/'
+
