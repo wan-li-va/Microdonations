@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
 from .models import Organization, Task
@@ -66,3 +66,20 @@ def edit_profile(request):
     context = {'user_form': user_form,
                'form': form}
     return render(request, 'donations/edit_profile.html', context)
+
+
+def organizationform(request):
+    template = loader.get_template('donations/add_organization_form.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
+
+
+def add_organization(request):
+    if request.method == 'POST':
+        organization_text = request.POST['name']
+        description_text = request.POST['body']
+        print(request.POST)
+        o = Organization(organization_text=organization_text,
+                         description_text=description_text)
+        o.save()
+    return HttpResponseRedirect(reverse('donations:donations'))
