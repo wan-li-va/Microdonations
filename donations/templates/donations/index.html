@@ -1,1 +1,88 @@
-<h1>hello world</h1>
+<html style="max-height: 600px">
+  <head>
+    <title>Donations</title>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css"
+    />
+  </head>
+
+  <div class="topnav">
+    <a href="">Profile</a>
+    <a class="active" href="/donations">Donations</a>
+    <a href="">Tasks</a>
+    <a href="">Notifications</a>
+    <a href="">favorite/recommended organizations/tasks</a>
+    <a href="">Private messaging</a>
+    <a href="">Spotlight page</a>
+    <a href="">Friends list/leaderboard</a>
+    <a href="">Community raffle</a>
+    <a href="">Contact us</a>
+    <a href="/donations/login">Login</a>
+  </div>
+
+  {% if user.is_authenticated %}
+  <div style="text-align: center">Hi {{ user.username }}!</div>
+  {% else %}
+  <div style="text-align: center"><p>You are not logged in</p></div>
+  {% endif %}
+
+  <style>
+    .topnav {
+      background-color: #333;
+      overflow: hidden;
+    }
+
+    /* Style the links inside the navigation bar */
+    .topnav a {
+      float: left;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+
+    /* Change the color of links on hover */
+    .topnav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    /* Add a color to the active/current link */
+    .topnav a.active {
+      background-color: #4caf50;
+      color: white;
+    }
+  </style>
+
+  <body>
+    <div
+      class="form-container container center"
+      style="width: 800px; margin-top: 40px; margin-right: 100px"
+    ></div>
+  </body>
+  <footer
+    class="page-footer unique-color-dark"
+    style="background-color: black; color: white"
+  >
+    <div class="footer-copyright" style="margin-top: 600px">
+      <small>Author: names</small><br /><small
+        ><a href="mailto:rvj8uc@virginia.edu">emails</a></small
+      >
+      <br /><small>&copy; Copyright 2020, names</small>
+    </div>
+  </footer>
+</html>
