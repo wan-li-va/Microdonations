@@ -1,0 +1,224 @@
+<html style="max-height: 600px;">
+
+<head>
+
+  <title>Edit Profile</title>
+
+  {% load static %}
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+  </script>
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
+</head>
+
+<ul class="topnav">
+  <li><a href="/donations/">Home</a></li>
+  {% if user.is_authenticated %}
+  <li><a href="/logout">Logout</a></li>
+  {% else %}
+  <li><a href="/">Login</a></li>
+  {% endif %}
+  <li><a href="/donations/donationslist">Donations</a></li>
+  <li><a href="/donations/taskslist">Tasks</a></li>
+  <li><a href="">Contact us</a></li>
+
+  <li class="dropdown left">
+    <a href="javascript:void(0)" class="active" class="dropbtn">Profile Information </i></a>
+    <div class="dropdown-content">
+      <a class="active" href="">Profile</a>
+      <a href="">Notifications</a>
+      <a href="">favorite/recommended organizations/tasks</a>
+      <a href="">Private messaging</a>
+      <a href="">Spotlight page</a>
+      <a href="">Friends list/leaderboard</a>
+      <a href="">Community raffle</a>
+    </div>
+  </li>
+</ul>
+
+
+<style>
+  body {
+    background-color: #D3D3D3;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  ul.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+    position: fixed;
+    top: -30;
+    width: 100%;
+  }
+
+  ul.topnav li {
+    float: left;
+  }
+
+  ul.topnav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  ul.topnav li:hover a:not(.active) {
+    background-color: #D3D3D3;
+    color: #000;
+  }
+
+  ul.topnav li a.active {
+    background-color: #D2691E;
+    color: white;
+  }
+
+  ul.topnav li.right {
+    float: right;
+  }
+
+  @media screen and (max-width: 600px) {
+
+    ul.topnav,
+    ul.topnav {
+      position: unset
+    }
+
+    ul.topnav li.right,
+    ul.topnav li {
+      float: none;
+    }
+  }
+
+  ul.topnav .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 10px;
+    font-size: .9pc;
+
+  }
+
+  ul.topnav .dropdown-content a {
+    color: black;
+    text-decoration: none;
+    display: block;
+    width: 165px;
+    font-size: .9pc;
+  }
+
+  ul.topnav .dropdown:hover>.dropdown-content {
+    display: block;
+  }
+
+
+  body {
+    background-color: #eeeeee;
+    width: 80px;
+    text-align: center;
+  }
+
+  img {
+    display: block;
+    width: 80px;
+    margin: 30px auto;
+    box-shadow: 0 5px 10px -7px #333333;
+    border-radius: 50%;
+
+  }
+
+  .form {
+    background-color: #ffffff;
+    width: 500px;
+    margin: 50px auto 10px auto;
+    padding: 30px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px -3px #333;
+    text-align: center;
+  }
+
+  input {
+    border-radius: 100px;
+    padding: 10px 15px;
+    width: 50%;
+    border: 1px solid #D9D9D9;
+    outline: none;
+    display: block;
+    margin: 20px auto 20px auto;
+  }
+
+  button {
+    border-radius: 100px;
+    border: none;
+    background: #719BE6;
+    width: 50%;
+    padding: 10px;
+    color: #FFFFFF;
+    margin-top: 25px;
+    box-shadow: 0 2px 10px -3px #719BE6;
+    display: block;
+    margin: 55px auto 10px auto;
+  }
+
+  a {
+    text-align: center;
+    margin-top: 30px;
+    color: #719BE6;
+    text-decoration: none;
+    padding: 5px;
+    display: inline-block;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<body>
+
+  {% if user.is_authenticated %}
+  <div class="form-container container center" style="text-align: center; width: 1000%; padding-top: 5em;">
+    <h1>Hi User {{ user.username }} Edit Your Profile Info!</h1>
+  </div>
+
+  <form method="POST">
+    {% csrf_token %}
+    <div style="width: 30em">
+    {{user_form}}
+    {{form}}
+    <input type="submit" name="Submit">
+  </div>
+  </form>
+
+  {% else %}
+  <div style="text-align: center">
+    <p>You are not logged in</p>
+  </div>
+  {% endif %}
+
+
+
+</body>
+<footer
+class="page-footer unique-color-dark"
+style="height: 110px; width: 100vw; background-color: black; color: white"
+>
+    <div class="footer-copyright" style="margin-top: 650px;">
+    <small>Author: names</small><br /><small><a href="mailto:rvj8uc@virginia.edu">emails</a></small><br /><small>&copy; Copyright 2020, names</small>
+</div>
+</footer>
+
+</html>
