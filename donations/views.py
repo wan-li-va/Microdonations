@@ -41,13 +41,16 @@ def tasks(request):
 
 
 def profile(request):
-    profile_bio = request.user.profile.profile_bio
-    profile_phone = request.user.profile.profile_phone
-    profile_location = request.user.profile.profile_location
-    profile_email = request.user.email
+    if request.user.is_authenticated:
+        profile_bio = request.user.profile.profile_bio
+        profile_phone = request.user.profile.profile_phone
+        profile_location = request.user.profile.profile_location
+        profile_email = request.user.email
 
-    context = {'profile_bio': profile_bio, 'profile_phone': profile_phone,
-               'profile_location': profile_location, 'profile_email': profile_email}
+        context = {'profile_bio': profile_bio, 'profile_phone': profile_phone,
+                   'profile_location': profile_location, 'profile_email': profile_email}
+    else:
+        context = {}
     return render(request, 'donations/profile.html', context)
 
 

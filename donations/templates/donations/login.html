@@ -21,7 +21,11 @@
 
 <ul class="topnav">
   <li><a href="/donations/">Home</a></li>
-    <li><a class="active"href="/">Login</a></li>
+  {% if user.is_authenticated %}
+  <li><a class="active"href="/logout">Logout</a></li>
+  {% else %}
+  <li><a class="active" href="/">Login</a></li>
+  {% endif %}
     <li><a href="/donations/donationslist">Donation organizations</a></li>
     <li><a href="/donations/taskslist">Tasks</a>
     <li><a href="">Contact us</a></li>

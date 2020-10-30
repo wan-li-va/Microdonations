@@ -21,7 +21,11 @@
 
 <ul class="topnav">
   <li><a class="active" href="/donations/">Home</a></li>
-    <li><a href="/">Login</a></li>
+  {% if user.is_authenticated %}
+  <li><a href="/logout">Logout</a></li>
+  {% else %}
+  <li><a href="/">Login</a></li>
+  {% endif %}
     <li><a href="/donations/donationslist">Donation organizations</a></li>
     <li><a href="/donations/taskslist">Tasks</a>
     <li><a href="">Contact us</a></li>
@@ -178,7 +182,7 @@ a:hover {
     <p>Welcome, {{ user.username }} !</p>
 
     {% else %}
-    <a href="{% provider_login_url 'google' %}">Login with Google</a>
+    <a style="margin-top: 5em;"href="{% provider_login_url 'google' %}">Login with Google</a>
     {% endif %}
 
 </body>
