@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from .models import Organization,Task
+from .models import Organization, Task, Profile
+
 
 class OrganizationAdmin(admin.ModelAdmin):
     fieldsets = [
@@ -11,7 +12,9 @@ class OrganizationAdmin(admin.ModelAdmin):
     list_filter = ['organization_text']
     search_fields = ['organization_text']
 
+
 admin.site.register(Organization, OrganizationAdmin)
+
 
 class TaskAdmin(admin.ModelAdmin):
     fieldsets = [
@@ -22,4 +25,8 @@ class TaskAdmin(admin.ModelAdmin):
     list_filter = ['task_text']
     search_fields = ['task_text']
 
+
 admin.site.register(Task, TaskAdmin)
+
+
+admin.site.register(Profile)
