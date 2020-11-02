@@ -17,6 +17,7 @@ def index(request):
 
 
 def login(request):
+    template = loader.get_template('donations/login.html')
     context = {}
     return HttpResponse(template.render(context, request))
 
@@ -86,3 +87,12 @@ def add_organization(request):
                          description_text=description_text)
         o.save()
     return HttpResponseRedirect(reverse('donations:donations'))
+
+def org_description(request):
+    template = loader.get_template('donations/org_description.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
+def task_description(request):
+    template = loader.get_template('donations/task_description.html')
+    context = {}
+    return HttpResponse(template.render(context, request))

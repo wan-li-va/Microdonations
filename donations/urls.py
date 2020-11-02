@@ -16,4 +16,6 @@ urlpatterns = [
          views.organizationform, name="organizationform"),
     path('donationslist/organizationform/add_organization',
          views.add_organization, name="add_organization"),
+    path('donationslist/orgdescription/', views.org_description, name='org_description'),
+    path('taskslist/taskdescription/', views.task_description, name='task_description'),
 ]
