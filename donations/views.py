@@ -86,3 +86,26 @@ def add_organization(request):
                          description_text=description_text)
         o.save()
     return HttpResponseRedirect(reverse('donations:donations'))
+"""
+def review(request):
+    if request.method == 'POST':
+        if request.POST.get('organization') and request.POST.get('review_text'):
+            review=Review()
+            review.organization = request.POST.get('organization')
+            review.review_text = request.POST.get('review_text')
+            review.save()
+
+            return render(request, 'polls/review.html')
+        else:
+            return render(request, 'polls/review.html')
+    else:
+        return render(request, 'polls/review.html')
+    
+def reviewList(request):
+    list_of_comments = Comment.objects.order_by('-pub_date')
+    template = loader.get_template('polls/list.html')
+    context = {
+        'list_of_comments': list_of_comments,
+    }
+    return HttpResponse(template.render(context,request))
+"""
