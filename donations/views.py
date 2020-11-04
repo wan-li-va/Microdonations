@@ -86,3 +86,20 @@ def add_organization(request):
                          description_text=description_text)
         o.save()
     return HttpResponseRedirect(reverse('donations:donations'))
+
+
+def taskform(request):
+    template = loader.get_template('donations/add_task_form.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
+
+
+def add_task(request):
+    if request.method == 'POST':
+        task_text = request.POST['name']
+        description_text = request.POST['body']
+        print(request.POST)
+        t = Task(task_text=task_text,
+                 description_text=description_text)
+        t.save()
+    return HttpResponseRedirect(reverse('donations:tasks'))
