@@ -16,8 +16,8 @@ jobs:
     - stage: deploy to production
       script: skip
       deploy:
-        <<: *heroku
-        app: micro-donations
+        provider: *heroku
+        app: MicroDonations
     - stage: test deployment
       script: 'curl http://micro-donations-cs3240.herokuapp.com'
     #- stage: test
