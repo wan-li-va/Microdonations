@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.template import loader
 from django.urls import reverse
 from .models import Organization, Task
@@ -7,6 +7,8 @@ from django.shortcuts import get_object_or_404  # used for shortcut method
 from .models import Profile
 from .forms import ProfileForm
 from .forms import UserForm
+import json
+from .models import Product, Order
 
 # Create your views here.
 
@@ -101,7 +103,7 @@ def add_task(request):
                 description_text=description_text)
         t.save()
     return HttpResponseRedirect(reverse('donations:tasks'))
-    
+
 """
 def review(request):
     if request.method == 'POST':
@@ -125,3 +127,27 @@ def reviewList(request):
     }
     return HttpResponse(template.render(context,request))
 """
+
+def store(request):
+	products = Product.objects.all()
+	context = {'products':products}
+	return render(request, 'donations/store.html', context)
+
+def checkout(request, pk):
+	product = Product.objects.get(id=pk)
+	context = {'product':product}
+	return render(request, 'donations/checkout.html', context)
+
+def paymentComplete(request):
+	body = json.loads(request.body)
+	print('BODY:', body)
+	product = Product.objects.get(id=body['productId'])
+	Order.objects.create(
+		product=product
+		)
+
+	return JsonResponse('Payment completed!', safe=False)
+
+
+def simpleCheckout(request):
+	return render(request, 'donations/simple_checkout.html')

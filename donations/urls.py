@@ -20,4 +20,9 @@ urlpatterns = [
          views.taskform, name="taskform"),
     path('taskslist/taskform/add_task',
          views.add_task, name="add_task"),
+
+     path('store/', views.store, name="store"),
+    path('checkout/<int:pk>/', views.checkout, name="checkout"),
+    path('complete/', views.paymentComplete, name="complete"),
+    path('simple-checkout/', views.simpleCheckout, name="simple-checkout"),
 ]
