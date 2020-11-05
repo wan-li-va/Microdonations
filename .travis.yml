@@ -14,7 +14,7 @@ jobs:
     - stage: unit tests
       script: pytest
     - stage: test
-      script: 'https://micro-donations-cs3240.herokuapp.com'
+      script: 'curl https://micro-donations-cs3240.herokuapp.com/'
     # - stage: deploy to staging
     #   script: skip
     #   deploy: &heroku
