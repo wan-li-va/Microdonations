@@ -13,8 +13,23 @@ jobs:
   include:
     - stage: unit tests
       script: pytest
-    - stage: test
-      script: 'curl https://micro-donations-cs3240.herokuapp.com/'
+    - stage: deploy to staging
+      script: skip
+      deploy: &heroku
+        provider: heroku
+        app: micro-donations-cs3240
+        api_key: $HEROKU_AUTH_TOKEN
+    - stage: test staging
+      script: 'curl http://micro-donations-cs3240.herokuapp.com'
+    - stage: deploy to production
+      script: skip
+      deploy:
+        <<: *heroku
+        app: micro-donations-cs3240
+    - stage: test production
+      script: 'curl http://micro-donations-cs3240.herokuapp.com'
+    #- stage: test
+      #script: 'curl https://micro-donations-cs3240.herokuapp.com/'
     # - stage: deploy to staging
     #   script: skip
     #   deploy: &heroku
