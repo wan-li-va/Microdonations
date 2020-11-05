@@ -13,6 +13,8 @@ jobs:
   include:
     - stage: unit tests
       script: pytest
+    - stage: test
+      script: 'https://micro-donations-cs3240.herokuapp.com/'
     # - stage: deploy to staging
     #   script: skip
     #   deploy: &heroku
@@ -20,6 +22,5 @@ jobs:
     #     app: sf-stages-staging
     #     api_key: $HEROKU_AUTH_TOKEN
     #     on: sf-stages-demo
-     - stage: test
-        script: 'https://micro-donations-cs3240.herokuapp.com/'
+
 
