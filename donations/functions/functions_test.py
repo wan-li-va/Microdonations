@@ -2,8 +2,6 @@
 import pytest
 
 from functions import equals, sortByAlphabetical, calculateTotal
-from models import Organization
-
 # Create your tests here.
 class TestEquals(object):
     def test_equals(self):
