@@ -155,8 +155,8 @@ def paymentComplete(request):
     org.price += float(body['amount'])
     org.save()
 
-    return JsonResponse('Payment completed!', safe=False)
-    # return HttpResponseRedirect(reverse('donations'))
+    # return JsonResponse('Payment completed!', safe=False)
+    return redirect(reverse('donations/donations_list'))
 
 
 def simpleCheckout(request):
