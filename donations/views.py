@@ -8,7 +8,6 @@ from .models import Profile
 from .forms import ProfileForm
 from .forms import UserForm
 import json
-from .models import Product, Order
 
 # Create your views here.
 
@@ -141,27 +140,23 @@ def reviewList(request):
 """
 
 
-def store(request):
-    products = Product.objects.all()
-    context = {'products': products}
-    return render(request, 'donations/store.html', context)
-
-
 def checkout(request, pk):
-    product = Product.objects.get(id=pk)
-    context = {'product': product}
+    org = Organization.objects.get(id=pk)
+    context = {'org': org}
     return render(request, 'donations/checkout.html', context)
 
 
 def paymentComplete(request):
     body = json.loads(request.body)
     print('BODY:', body)
-    product = Product.objects.get(id=body['productId'])
-    Order.objects.create(
-        product=product
-    )
+    org = Organization.objects.get(id=body['productId'])
+    print(body['amount'])
+    print("hellos")
+    org.price += float(body['amount'])
+    org.save()
 
     return JsonResponse('Payment completed!', safe=False)
+    # return HttpResponseRedirect(reverse('donations'))
 
 
 def simpleCheckout(request):

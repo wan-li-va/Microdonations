@@ -16,21 +16,15 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg">
-                <br>
-                <img src="{{product.image_url}}">
-            </div>
-
             <div class="col-lg">
                 <br>
                 <div class="card card-body">
-                    <h3>{{product.name}}</h3>
+                    <h3>{{org.name}}</h3>
                     <hr>
-                    <h4>Total: ${{product.price}}</h4>
+                    <h4>Total Funds: ${{org.price}}</h4>
                     <hr>
-
+                    <input type="number" name="myname"id="totalAmt"value="5.00"></input>
+                    
                     <div id="paypal-button-container"></div>
 
                 </div>
@@ -60,11 +54,13 @@
         }
         var csrftoken = getCookie('csrftoken');
 
-        var total = '{{product.price}}'
-        var productId = '{{product.id}}'
+        var total = '{{org.price}}'
+        total = '1.01'
+        var productId = '{{org.id}}'
+        var amount = document.getElementById('totalAmt').value      
 
         function completeOrder() {
-            var url = "{% url 'complete' %}"
+            var url = "{% url 'donations:complete' %}"
 
             fetch(url, {
                 method: 'POST',
@@ -72,7 +68,7 @@
                     'Content-type': 'application/json',
                     'X-CSRFToken': csrftoken,
                 },
-                body: JSON.stringify({ 'productId': productId })
+                body: JSON.stringify({ 'productId': productId, 'amount': amount })
             })
         }
 
@@ -80,28 +76,35 @@
         // Render the PayPal button into #paypal-button-container
         paypal.Buttons({
 
-            // Set up the transaction
-            createOrder: function (data, actions) {
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: total
-                        }
-                    }]
-                });
-            },
+        style: {
+        color: 'blue',
+        shape: 'rect',
+        label: 'pay',
+        height: 40
+        },
 
-            // Finalize the transaction
-            onApprove: function (data, actions) {
-                return actions.order.capture().then(function (details) {
-                    // Show a success message to the buyer
-                    completeOrder()
-                    alert('Transaction completed by ' + details.payer.name.given_name + '!');
-                });
-            }
+        // Set up the transaction
+        createOrder: function (data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                amount: {
+                    value: amount
+                    }
+                }]
+            });
+        },
+
+        // Finalize the transaction
+        onApprove: function (data, actions) {
+            return actions.order.capture().then(function (details) {
+                // Show a success message to the buyer
+                completeOrder()
+                alert('Transaction completed by ' + details.payer.name.given_name + '!');
+            });
+        }
 
 
-        }).render('#paypal-button-container');
+    }).render('#paypal-button-container');
     </script>
 
 </body>

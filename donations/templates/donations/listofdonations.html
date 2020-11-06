@@ -206,9 +206,8 @@ a:hover {
             <p class="card-text">{{ Organization.description_text }}</p>
             <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
             <button type="button" class="btn btn-light-blue btn-md" >Read more</button>
-            <form action="{% url 'donations:add_fav_org' %}" method="post">
-            <button type="button" class="btn btn-light-blue btn-md" >Add To Favorites</button>
-            </form>
+            <a href="{% url 'donations:checkout' Organization.id  %}" type="button" class="btn btn-light-blue btn-md" >Donate</a>
+            <div><span>Funds Raised </span><span> ${{ Organization.price }}</span></div>
           </div>
     
         </div>
