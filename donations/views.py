@@ -89,10 +89,19 @@ def add_organization(request):
     return HttpResponseRedirect(reverse('donations:donations'))
 
 def org_description(request):
+    #list_of_organizations = Organization.objects.all()
     template = loader.get_template('donations/org_description.html')
     context = {}
+    #context = {
+    #    'list_of_organizations': list_of_organizations,
+    #}
     return HttpResponse(template.render(context, request))
+    
 def task_description(request):
+    #list_of_tasks = Task.objects.all()
     template = loader.get_template('donations/task_description.html')
     context = {}
+    #context = {
+    #    'list_of_tasks': list_of_tasks,
+    #}
     return HttpResponse(template.render(context, request))
