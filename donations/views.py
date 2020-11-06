@@ -81,7 +81,6 @@ def add_organization(request):
     if request.method == 'POST':
         organization_text = request.POST['name']
         description_text = request.POST['body']
-        print(request.POST)
         o = Organization(organization_text=organization_text,
                          description_text=description_text)
         o.save()
@@ -98,8 +97,18 @@ def add_task(request):
     if request.method == 'POST':
         task_text = request.POST['name']
         description_text = request.POST['body']
-        print(request.POST)
         t = Task(task_text=task_text,
                  description_text=description_text)
         t.save()
     return HttpResponseRedirect(reverse('donations:tasks'))
+
+
+def add_fav_org(request, organization):
+    if request.method == 'Post':
+        a = 1
+        print(a)
+        print(request.POST)
+        # org = request.POST['org']
+        # u = request.user
+        # u.profile.favorite_orgs.add(org)
+        return HttpResponseRedirect(reverse('donations:tasks'))

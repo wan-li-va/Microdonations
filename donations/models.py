@@ -26,7 +26,7 @@ class Profile(models.Model):
     profile_bio = models.CharField(max_length=500)
     profile_location = models.CharField(max_length=100)
     profile_phone = models.CharField(max_length=100)
-    # favorite_orgs = models.ManyToManyField(Organization)
+    favorite_orgs = models.ManyToManyField(Organization)
     # image = models.ImageField(upload_to='profile_image', blank=True)
 
 

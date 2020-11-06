@@ -20,4 +20,6 @@ urlpatterns = [
          views.taskform, name="taskform"),
     path('taskslist/taskform/add_task',
          views.add_task, name="add_task"),
+    path('add_fav_org',
+         views.add_fav_org, name="add_fav_org"),
 ]
