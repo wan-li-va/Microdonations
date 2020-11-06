@@ -12,7 +12,7 @@ install:
 jobs:
   include:
     - stage: unit tests
-      script: test
+      script: python manage.py test
    
     - stage: test deployment
       script: 'curl http://micro-donations-cs3240.herokuapp.com'
