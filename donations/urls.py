@@ -22,4 +22,8 @@ urlpatterns = [
          views.add_task, name="add_task"),
     path('add_fav_org',
          views.add_fav_org, name="add_fav_org"),
+    path('store/', views.store, name="store"),
+    path('checkout/<int:pk>/', views.checkout, name="checkout"),
+    path('complete/', views.paymentComplete, name="complete"),
+    path('simple-checkout/', views.simpleCheckout, name="simple-checkout"),
 ]

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.template import loader
 from django.urls import reverse
 from .models import Organization, Task
@@ -7,6 +7,8 @@ from django.shortcuts import get_object_or_404  # used for shortcut method
 from .models import Profile
 from .forms import ProfileForm
 from .forms import UserForm
+import json
+from .models import Product, Order
 
 # Create your views here.
 
@@ -112,3 +114,55 @@ def add_fav_org(request, organization):
         # u = request.user
         # u.profile.favorite_orgs.add(org)
         return HttpResponseRedirect(reverse('donations:tasks'))
+
+
+"""
+def review(request):
+    if request.method == 'POST':
+        if request.POST.get('organization') and request.POST.get('review_text'):
+            review=Review()
+            review.organization = request.POST.get('organization')
+            review.review_text = request.POST.get('review_text')
+            review.save()
+
+            return render(request, 'polls/review.html')
+        else:
+            return render(request, 'polls/review.html')
+    else:
+        return render(request, 'polls/review.html')
+    
+def reviewList(request):
+    list_of_comments = Comment.objects.order_by('-pub_date')
+    template = loader.get_template('polls/list.html')
+    context = {
+        'list_of_comments': list_of_comments,
+    }
+    return HttpResponse(template.render(context,request))
+"""
+
+
+def store(request):
+    products = Product.objects.all()
+    context = {'products': products}
+    return render(request, 'donations/store.html', context)
+
+
+def checkout(request, pk):
+    product = Product.objects.get(id=pk)
+    context = {'product': product}
+    return render(request, 'donations/checkout.html', context)
+
+
+def paymentComplete(request):
+    body = json.loads(request.body)
+    print('BODY:', body)
+    product = Product.objects.get(id=body['productId'])
+    Order.objects.create(
+        product=product
+    )
+
+    return JsonResponse('Payment completed!', safe=False)
+
+
+def simpleCheckout(request):
+    return render(request, 'donations/simple_checkout.html')
