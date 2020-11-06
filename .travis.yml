@@ -13,7 +13,6 @@ jobs:
   include:
     - stage: unit tests
       script: python manage.py test
-   
     - stage: test deployment
       script: 'curl http://micro-donations-cs3240.herokuapp.com'
       
