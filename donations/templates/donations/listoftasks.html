@@ -214,6 +214,14 @@
             <p class="card-text">{{Task.description_text}}</p>
             <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
             <button type="button" class="btn btn-light-blue btn-md">Read more</button>
+            <form method="POST" action="{% url 'donations:done_task' Task.id %}">
+              {% csrf_token %}
+              {% if Task.is_done %}
+              <button type="button" disable="true" class="btn btn-grey btn-md">Task Done</button>
+              {% else %}
+              <button type="submit" class="btn btn-blue btn-md">Do Task</button>
+              {% endif %}
+            </form>
 
           </div>
 
