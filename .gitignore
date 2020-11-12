@@ -1,2 +1,6 @@
 env
 .idea
+db.sqlite3
+MicroDonations/__pycache__/*
+donations/__pycache__/*
+donations/migrations/__pycache__/*
