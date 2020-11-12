@@ -43,7 +43,7 @@ def tasks(request):
 def done_task(request, pk):
     if request.method == 'POST':
         task = Task.objects.get(id=pk)
-        task.is_done = False
+        task.is_done = True
         task.save()
     context = {
         'list_of_tasks' : Task.objects.all()
