@@ -20,6 +20,7 @@ class TaskAdmin(admin.ModelAdmin):
     fieldsets = [
         (None,               {'fields': ['task_text']}),
         ('Description', {'fields': ['description_text']}),
+        ('is_done', {'fields': ['is_done']}),
     ]
     list_display = ('task_text', 'description_text')
     list_filter = ['task_text']
