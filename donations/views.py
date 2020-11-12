@@ -40,6 +40,17 @@ def tasks(request):
     return HttpResponse(template.render(context, request))
     return render(request, 'donations/googlelogin.html', context)
 
+def done_task(request, pk):
+    if request.method == 'POST':
+        task = Task.objects.get(id=pk)
+        task.is_done = false
+        task.save()
+    context = {
+        'list_of_tasks' : Task.objects.all()
+        }
+    return render(request, 'donations/listoftasks.html', context)
+    # return HttpResponseRedirect(reverse('donations'))
+
 
 def profile(request):
     if request.user.is_authenticated:

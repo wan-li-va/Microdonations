@@ -18,6 +18,7 @@ class Organization(models.Model):
 class Task(models.Model):
     task_text = models.CharField(max_length=200)
     description_text = models.CharField(max_length=200)
+    is_done = models.BooleanField(default=False)
 
     def __str__(self):
         return self.task_text
