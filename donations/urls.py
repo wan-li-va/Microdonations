@@ -25,4 +25,5 @@ urlpatterns = [
     path('checkout/<int:pk>/', views.checkout, name="checkout"),
     path('complete/', views.paymentComplete, name="complete"),
     path('simple-checkout/', views.simpleCheckout, name="simple-checkout"),
+    path('done_task/<int:pk>/', views.done_task, name="done_task"),
 ]

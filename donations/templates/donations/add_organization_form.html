@@ -1,11 +1,123 @@
 {% load static %}
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<style>
+    body {
+        margin: 15vh 20vw 10vh;
+        padding: 5vw;
+        align-items: center;
+        outline: 5px solid black;
+        border-radius: 25px;
+        background-color: #eeeeee;
+    }
+
+    ul.topnav {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        background-color: #333;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+        left: 0;
+    }
+
+    ul.topnav li {
+        float: left;
+    }
+
+    ul.topnav li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    ul.topnav li:hover a:not(.active) {
+        background-color: #D3D3D3;
+        color: #000;
+    }
+
+    ul.topnav li a.active {
+        background-color: #D2691E;
+        color: white;
+    }
+
+    ul.topnav li.right {
+        float: right;
+    }
+
+    @media screen and (max-width: 600px) {
+
+        ul.topnav,
+        ul.topnav {
+            position: unset
+        }
+
+        ul.topnav li.right,
+        ul.topnav li {
+            float: none;
+        }
+    }
+
+    ul.topnav .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: white;
+        min-width: 10px;
+        font-size: .9pc;
+
+    }
+
+    ul.topnav .dropdown-content a {
+        color: black;
+        text-decoration: none;
+        display: block;
+        width: 165px;
+        font-size: .9pc;
+    }
+
+    ul.topnav .dropdown:hover>.dropdown-content {
+        display: block;
+    }
+
+    h1 {
+        margin-bottom: 5vh;
+    }
+</style>
+
+<ul class="topnav">
+    <li><a href="/donations/">Home</a></li>
+    {% if user.is_authenticated %}
+    <li><a href="/logout">Logout</a></li>
+    {% else %}
+    <li><a href="/">Login</a></li>
+    {% endif %}
+    <li><a class="active" href="/donations/donationslist">Donation organizations</a></li>
+    <li><a href="/donations/taskslist">Tasks</a>
+    <li><a href="">Contact us</a></li>
+
+    <li class="dropdown left">
+        <a href="javascript:void(0)" class="dropbtn">Profile Information </i></a>
+        <div class="dropdown-content">
+            <a href="/donations/profile">Profile</a>
+            <a href="">Notifications</a>
+            <a href="">favorite/recommended organizations/tasks</a>
+            <a href="">Private messaging</a>
+            <a href="">Spotlight page</a>
+            <a href="">Friends list/leaderboard</a>
+            <a href="">Community raffle</a>
+        </div>
+    </li>
+</ul>
 
 <div>
     <h1>Add a new organization to the donations list!</h1>
-    <form action="{% url 'donations:add_organization'%}" method="post" >
+    <form action="{% url 'donations:add_organization'%}" method="post">
         {% csrf_token %}
         <div class="form-group">
             <label for="name">Name of the organization:</label>
@@ -16,7 +128,6 @@
             <textarea class="form-control" id="info" rows="3" name="body"></textarea>
         </div>
 
-       <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
-
