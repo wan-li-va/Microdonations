@@ -50,8 +50,8 @@ def done_task(request, pk):
     context = {
         'list_of_tasks': Task.objects.all()
     }
-    return render(request, 'donations/listoftasks.html', context)
-    # return HttpResponseRedirect(reverse('donations'))
+    # return render(request, 'donations/listoftasks.html', context)
+    return HttpResponseRedirect(reverse('donations:tasks'))
 
 
 def profile(request):
