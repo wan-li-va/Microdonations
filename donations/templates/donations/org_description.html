@@ -151,7 +151,7 @@ button {
   border-radius: 100px;
   border: none;
   background: #719BE6;
-  width: 100%;
+  width: 50%;
   padding: 10px;
   color: #FFFFFF;
   margin-top: 25px;
@@ -179,14 +179,18 @@ a:hover {
 <body>
     <!--Grid row-->
 <div class="form-container container center" style="width:800px; margin-top: 100px; margin-left:320px;"  >
-    <h2 style="font-family:sans-serif; text-align:center;">Organizations</h2>
-    <a class="btn btn-primary" href="/donations/donationslist/organizationform" role="button">Add Organization</a>
-    <div class="row row-cols-1 row-cols-md-2">
+
+    <!-- <h4 style="font-family:sans-serif; text-align:center;">Organization Description</h4> -->
+    
     {% if list_of_organizations %}
     {% for Organization in list_of_organizations %}
       <div class="col mb-4">
+
+        <h2 style="font-family:sans-serif; text-align:center;">{{ Organization.organization_text }}</h2>
+
+
         <!-- Card -->
-        <div class="card">
+        <!-- <div class="card"> -->
     
           <!--Card image-->
           <div class="view overlay">
@@ -201,21 +205,19 @@ a:hover {
           <div class="card-body">
     
             <!--Title-->
-            <h4 class="card-title">{{ Organization.organization_text }}</h4>
+            <h4 class="card-title">This organization's mission is to help alleviate hunger in third-world countries. Please consider supporting us and our mission by donating and/or spreading awareness by sharing our page on social media.</h4>
             <!--Text-->
             <p class="card-text">{{ Organization.description_text }}</p>
             <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-            <a href='orgdescription/'><button type="button" class="btn btn-light-blue btn-md" >Read more</button></a>
-            <a href="{% url 'donations:checkout' Organization.id  %}" type="button" class="btn btn-light-blue btn-md" >Donate</a>
-            <div><span>Funds Raised </span><span> ${{ Organization.price }}</span></div>
+            <!-- <button type="button" class="btn btn-light-blue btn-md" >Read more</button> -->
           </div>
     
-        </div>
+        <!-- </div> -->
         <!-- Card -->
-      </div>
+
     {% endfor %}
     {% else %}
-       <p>No organizations are available.</p>
+       <p>Organization description.</p>
     {% endif %}   
     </div>
   

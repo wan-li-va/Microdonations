@@ -172,3 +172,13 @@ def paymentComplete(request):
 
 def simpleCheckout(request):
     return render(request, 'donations/simple_checkout.html')
+
+
+def org_description(request):
+    list_of_organizations = Organization.objects.all()
+    template = loader.get_template('donations/org_description.html')
+    context = {}
+    context = {
+        'list_of_organizations': list_of_organizations,
+    }
+    return HttpResponse(template.render(context, request))

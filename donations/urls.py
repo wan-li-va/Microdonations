@@ -26,4 +26,5 @@ urlpatterns = [
     path('complete/', views.paymentComplete, name="complete"),
     path('simple-checkout/', views.simpleCheckout, name="simple-checkout"),
     path('done_task/<int:pk>/', views.done_task, name="done_task"),
+    path('donationslist/orgdescription/', views.org_description, name='org_description'),
 ]
