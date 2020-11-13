@@ -24,9 +24,10 @@ def login(request):
 
 def donations(request):
     list_of_organizations = Organization.objects.all()
+    list_length = len(list_of_organizations)
     template = loader.get_template('donations/listofdonations.html')
     context = {
-        'list_of_organizations': list_of_organizations,
+        'list_of_organizations': list_of_organizations, 'list_length': list_length
     }
     return HttpResponse(template.render(context, request))
 
