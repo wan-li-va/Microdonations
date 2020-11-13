@@ -95,8 +95,9 @@ def add_organization(request):
     if request.method == 'POST':
         organization_text = request.POST['name']
         description_text = request.POST['body']
+        total = request.POST['total']
         o = Organization(organization_text=organization_text,
-                         description_text=description_text)
+                         description_text=description_text, fundsGoal=total)
         o.save()
     return HttpResponseRedirect(reverse('donations:donations'))
 
@@ -161,11 +162,8 @@ def checkout(request, pk):
 
 def paymentComplete(request):
     body = json.loads(request.body)
-    print('BODY:', body)
     org = Organization.objects.get(id=body['productId'])
-    print(body['amount'])
-    print("hellos")
-    org.price += float(body['amount'])
+    org.fundsRaised += float(body['amount'])
     org.save()
 
     # return JsonResponse('Payment completed!', safe=False)

@@ -207,7 +207,7 @@ a:hover {
           </div>
     
           <!--Card content-->
-          <div class="card-body">
+          <div id="cardContent" class="card-body" data-fundsGoal='{{ Organization.fundsGoal }}'>
     
             <!--Title-->
             <h4 class="card-title">{{ Organization.organization_text }}</h4>
@@ -216,8 +216,8 @@ a:hover {
             <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
             <button type="button" class="btn btn-light-blue btn-md" >Read more</button>
             <a href="{% url 'donations:checkout' Organization.id  %}" type="button" class="btn btn-light-blue btn-md" >Donate</a>
-            <div><span>Funds Raised </span><span id="totalRaised" value="{{ Organization.price }}"> ${{ Organization.price }}</span></div>
-            <div class="progbar-{{ forloop.counter0 }}" id="progressbar-{{ forloop.counter0 }}" value="{{ Organization.price }}" data-totalRasied="5"></div>
+            <div><span id="totalRaised" value="{{ Organization.fundsRaised }}"> ${{ Organization.fundsRaised }} out of ${{ Organization.fundsGoal }} raised</span></div>
+            <div class="progbar-{{ forloop.counter0 }}" id="progressbar-{{ forloop.counter0 }}" value="{{ Organization.fundsRaised }}" data-totalRasied="5"></div>
           </div>
     
         </div>
@@ -236,12 +236,13 @@ a:hover {
 <script>
 
   var length = $('#listContainer').attr('data-lengthOfList')
+  var fundsGoal = $('#cardContent').attr('data-fundsGoal')
   console.log("length", length)
 
   $(function() {
     for(var i = 0; i<length; i++){
       $('.progbar-' + i.toString()).progressbar({
-        value: parseInt($('.progbar-' + i.toString()).attr('value'))
+        value: parseInt((parseInt($('.progbar-' + i.toString()).attr('value'))/fundsGoal) * 100)
       });
     }
   });
