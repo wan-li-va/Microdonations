@@ -207,7 +207,7 @@ a:hover {
           </div>
     
           <!--Card content-->
-          <div id="cardContent" class="card-body" data-fundsGoal='{{ Organization.fundsGoal }}'>
+          <div id="cardContent-{{ forloop.counter0 }}" class="card-body" data-fundsGoal='{{ Organization.fundsGoal }}'>
     
             <!--Title-->
             <h4 class="card-title">{{ Organization.organization_text }}</h4>
@@ -236,11 +236,12 @@ a:hover {
 <script>
 
   var length = $('#listContainer').attr('data-lengthOfList')
-  var fundsGoal = $('#cardContent').attr('data-fundsGoal')
   console.log("length", length)
 
   $(function() {
     for(var i = 0; i<length; i++){
+      var fundsGoal = parseInt($('#cardContent-' + i.toString()).attr('data-fundsGoal'))
+      console.log("hello",fundsGoal)
       $('.progbar-' + i.toString()).progressbar({
         value: parseInt((parseInt($('.progbar-' + i.toString()).attr('value'))/fundsGoal) * 100)
       });
