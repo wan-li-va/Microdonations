@@ -24,9 +24,10 @@ def login(request):
 
 def donations(request):
     list_of_organizations = Organization.objects.all()
+    list_length = len(list_of_organizations)
     template = loader.get_template('donations/listofdonations.html')
     context = {
-        'list_of_organizations': list_of_organizations,
+        'list_of_organizations': list_of_organizations, 'list_length': list_length
     }
     return HttpResponse(template.render(context, request))
 
@@ -40,16 +41,17 @@ def tasks(request):
     return HttpResponse(template.render(context, request))
     return render(request, 'donations/googlelogin.html', context)
 
+
 def done_task(request, pk):
     if request.method == 'POST':
         task = Task.objects.get(id=pk)
         task.is_done = True
         task.save()
     context = {
-        'list_of_tasks' : Task.objects.all()
-        }
-    return render(request, 'donations/listoftasks.html', context)
-    # return HttpResponseRedirect(reverse('donations'))
+        'list_of_tasks': Task.objects.all()
+    }
+    # return render(request, 'donations/listoftasks.html', context)
+    return HttpResponseRedirect(reverse('donations:tasks'))
 
 
 def profile(request):
@@ -93,8 +95,9 @@ def add_organization(request):
     if request.method == 'POST':
         organization_text = request.POST['name']
         description_text = request.POST['body']
+        total = request.POST['total']
         o = Organization(organization_text=organization_text,
-                         description_text=description_text)
+                         description_text=description_text, fundsGoal=total)
         o.save()
     return HttpResponseRedirect(reverse('donations:donations'))
 
@@ -159,15 +162,12 @@ def checkout(request, pk):
 
 def paymentComplete(request):
     body = json.loads(request.body)
-    print('BODY:', body)
     org = Organization.objects.get(id=body['productId'])
-    print(body['amount'])
-    print("hellos")
-    org.price += float(body['amount'])
+    org.fundsRaised += float(body['amount'])
     org.save()
 
-    return JsonResponse('Payment completed!', safe=False)
-    # return HttpResponseRedirect(reverse('donations'))
+    # return JsonResponse('Payment completed!', safe=False)
+    # return HttpResponseRedirect(reverse('donations:tasks'))
 
 
 def simpleCheckout(request):
