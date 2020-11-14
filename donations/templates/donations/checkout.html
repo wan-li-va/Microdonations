@@ -1,5 +1,5 @@
 <head>
-    <title>Store</title>
+    <title>Checkout</title>
     <meta id="meta" name="viewport"
         content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 
@@ -16,12 +16,18 @@
 </head>
 
 <body>
+    <button href="">
+        <a href="/donations/donationslist">Return to List of Organizations</a>
+    </button>
+
+    <div>
+        <div>
             <div class="col-lg">
                 <br>
                 <div class="card card-body">
                     <h3>{{org.name}}</h3>
                     <hr>
-                    <h4>Total Funds: ${{org.price}}</h4>
+                    <h4>Total Funds Received: ${{org.price}}</h4>
                     <hr>
                     <input type="number" name="myname"id="totalAmt"value="5.00"></input>
                     
@@ -30,6 +36,18 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div style="width: 50%">
+    <br>
+    <h6>Our app implements the PayPal API. Because we don't want to you to spend your own money to test our app we are using a sandbox account. To test our app, press pay with paypal and login in with the info below and click the pay now button to submit a fake payment.</h6>
+    <br>
+    <h5>*Key Information*</h5>
+    <h6>Press Pay with PayPal</h6>
+    <h6>PayPal Sandbox Account Email: personalteam218@gmail.com</h6>
+    <h6>PayPal Sandbox Account Password: Ilovecs!</h6>
+    <br>
+    <h6>We just want to reitterate these are NOT real payments</h6>
     </div>
 
     <script

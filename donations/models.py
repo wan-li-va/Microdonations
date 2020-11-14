@@ -9,7 +9,8 @@ from django.utils import timezone
 class Organization(models.Model):
     organization_text = models.CharField(max_length=200)
     description_text = models.CharField(max_length=200)
-    price = models.FloatField(null=True, blank=True, default=0.0)
+    fundsRaised = models.FloatField(null=True, blank=True, default=0.0)
+    fundsGoal = models.FloatField(null=True, blank=True, default=0.0)
 
     def __str__(self):
         return self.organization_text
