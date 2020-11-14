@@ -97,8 +97,8 @@
     {% else %}
     <li><a href="/">Login</a></li>
     {% endif %}
-    <li><a class="active" href="/donations/donationslist">Donation organizations</a></li>
-    <li><a href="/donations/taskslist">Tasks</a>
+    <li><a href="/donations/donationslist">Donation organizations</a></li>
+    <li><a class="active" href="/donations/taskslist">Tasks</a>
     <li><a href="">Contact us</a></li>
 
     <li class="dropdown left">
@@ -116,20 +116,16 @@
 </ul>
 
 <div>
-    <h1>Add a new organization to the donations list!</h1>
-    <form action="{% url 'donations:add_organization'%}" method="post">
+    <h1>Add a new task you need help with!</h1>
+    <form action="{% url 'donations:add_task'%}" method="post">
         {% csrf_token %}
         <div class="form-group">
-            <label for="name">Name of the organization:</label>
+            <label for="name">Title of the task:</label>
             <input type="text" class="form-control" id="name" name="name" value="">
         </div>
         <div class="form-group">
-            <label for="info">Information about the organization:</label>
+            <label for="info">Information about the task:</label>
             <textarea class="form-control" id="info" rows="3" name="body"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="info">Fundraising Goal:</label>
-            <textarea class="form-control" id="info" rows="3" name="total"></textarea>
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>

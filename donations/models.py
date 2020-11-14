@@ -2,11 +2,15 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+import datetime
+from django.utils import timezone
 
 
 class Organization(models.Model):
     organization_text = models.CharField(max_length=200)
     description_text = models.CharField(max_length=200)
+    fundsRaised = models.FloatField(null=True, blank=True, default=0.0)
+    fundsGoal = models.FloatField(null=True, blank=True, default=0.0)
 
     def __str__(self):
         return self.organization_text
@@ -15,6 +19,7 @@ class Organization(models.Model):
 class Task(models.Model):
     task_text = models.CharField(max_length=200)
     description_text = models.CharField(max_length=200)
+    is_done = models.BooleanField(default=False)
 
     def __str__(self):
         return self.task_text
@@ -39,3 +44,13 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
+
+
+"""
+class Review(models.Model):
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
+    review_text = models.CharField(max_length=200000)
+    pub_date = models.DateTimeField('date published') # auto_now_add=True
+    def __str__(self):
+        return self.review_text
+"""

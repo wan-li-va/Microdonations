@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.template import loader
 from django.urls import reverse
 from .models import Organization, Task
@@ -7,6 +7,7 @@ from django.shortcuts import get_object_or_404  # used for shortcut method
 from .models import Profile
 from .forms import ProfileForm
 from .forms import UserForm
+import json
 
 # Create your views here.
 
@@ -17,7 +18,6 @@ def index(request):
 
 
 def login(request):
-    template = loader.get_template('donations/login.html')
     context = {}
     return HttpResponse(template.render(context, request))
 
@@ -39,6 +39,17 @@ def tasks(request):
     }
     return HttpResponse(template.render(context, request))
     return render(request, 'donations/googlelogin.html', context)
+
+def done_task(request, pk):
+    if request.method == 'POST':
+        task = Task.objects.get(id=pk)
+        task.is_done = True
+        task.save()
+    context = {
+        'list_of_tasks' : Task.objects.all()
+        }
+    return render(request, 'donations/listoftasks.html', context)
+    # return HttpResponseRedirect(reverse('donations'))
 
 
 def profile(request):
@@ -82,26 +93,90 @@ def add_organization(request):
     if request.method == 'POST':
         organization_text = request.POST['name']
         description_text = request.POST['body']
-        print(request.POST)
         o = Organization(organization_text=organization_text,
                          description_text=description_text)
         o.save()
     return HttpResponseRedirect(reverse('donations:donations'))
 
-def org_description(request):
-    #list_of_organizations = Organization.objects.all()
-    template = loader.get_template('donations/org_description.html')
+
+def taskform(request):
+    template = loader.get_template('donations/add_task_form.html')
     context = {}
-    #context = {
-    #    'list_of_organizations': list_of_organizations,
-    #}
     return HttpResponse(template.render(context, request))
+
+
+def add_task(request):
+    if request.method == 'POST':
+        task_text = request.POST['name']
+        description_text = request.POST['body']
+        t = Task(task_text=task_text,
+                 description_text=description_text)
+        t.save()
+    return HttpResponseRedirect(reverse('donations:tasks'))
+
+
+def add_fav_org(request, organization):
+    if request.method == 'Post':
+        a = 1
+        print(a)
+        print(request.POST)
+        # org = request.POST['org']
+        # u = request.user
+        # u.profile.favorite_orgs.add(org)
+        return HttpResponseRedirect(reverse('donations:tasks'))
+
+
+"""
+def review(request):
+    if request.method == 'POST':
+        if request.POST.get('organization') and request.POST.get('review_text'):
+            review=Review()
+            review.organization = request.POST.get('organization')
+            review.review_text = request.POST.get('review_text')
+            review.save()
+
+            return render(request, 'polls/review.html')
+        else:
+            return render(request, 'polls/review.html')
+    else:
+        return render(request, 'polls/review.html')
     
-def task_description(request):
-    #list_of_tasks = Task.objects.all()
-    template = loader.get_template('donations/task_description.html')
-    context = {}
-    #context = {
-    #    'list_of_tasks': list_of_tasks,
-    #}
-    return HttpResponse(template.render(context, request))
+def reviewList(request):
+    list_of_comments = Comment.objects.order_by('-pub_date')
+    template = loader.get_template('polls/list.html')
+    context = {
+        'list_of_comments': list_of_comments,
+    }
+    return HttpResponse(template.render(context,request))
+"""
+
+
+def checkout(request, pk):
+    org = Organization.objects.get(id=pk)
+    context = {'org': org}
+    return render(request, 'donations/checkout.html', context)
+
+
+def paymentComplete(request):
+    body = json.loads(request.body)
+    print('BODY:', body)
+    org = Organization.objects.get(id=body['productId'])
+    print(body['amount'])
+    print("hellos")
+    org.price += float(body['amount'])
+    org.save()
+
+    return JsonResponse('Payment completed!', safe=False)
+    # return HttpResponseRedirect(reverse('donations'))
+
+
+def simpleCheckout(request):
+    return render(request, 'donations/simple_checkout.html')
+
+
+def org_description(request, pk):
+    org = Organization.objects.get(id=pk)
+    context = {
+        'org': org,
+    }
+    return render(request, 'donations/org_description.html', context)

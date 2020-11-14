@@ -17,6 +17,15 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
 <!-- Material Design Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+<script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+<script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+  integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+  crossorigin="anonymous"></script>
 </head>
 
 <ul class="topnav">
@@ -120,7 +129,8 @@ body {
 
 img {
   display: block;
-  width: 80px;
+  width: 100%;
+  height: auto;
   margin: 30px auto;
   box-shadow: 0 5px 10px -7px #333333;
   border-radius: 50%;
@@ -174,17 +184,28 @@ a:hover {
   text-decoration: underline;
 }
 
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
 
 </style>
 
 <body>
-  {% if user.is_authenticated %}
-    <p>Welcome, {{ user.username }} !</p>
 
-    {% else %}
-    <a style="margin-top: 5em;"href="{% provider_login_url 'google' %}">Login with Google</a>
-    {% endif %}
-
+<div class="centered"><img src="https://i.imgur.com/ARKtpJh.png"> <h1 id="motto">Where making a small donation makes a big difference</h1></div>
+<script>
+    $(document).ready(function() { 
+      $('img').hide();
+      $('#motto').hide();
+      $('#motto').fadeIn(2000);
+      $('img').fadeIn(2000);
+    });
+</script>
 </body>
 <footer
 class="page-footer unique-color-dark"

@@ -11,10 +11,9 @@ install:
 # # command to run tests
 jobs:
   include:
-    - stage: unit tests
-      script: pytest
-      #script: python3 manage.py test
-      
+    #- stage: unit tests
+      #script: pytest
+   
     - stage: test deployment
       script: 'curl http://micro-donations-cs3240.herokuapp.com'
       
@@ -28,3 +27,5 @@ jobs:
     #     app: sf-stages-staging
     #     api_key: $HEROKU_AUTH_TOKEN
     #     on: sf-stages-demo
+
+
