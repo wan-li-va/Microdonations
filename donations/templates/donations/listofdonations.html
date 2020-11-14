@@ -212,7 +212,7 @@ a:hover {
             <!--Title-->
             <h4 class="card-title">{{ Organization.organization_text }}</h4>
             <!--Text-->
-            <p class="card-text">{{ Organization.description_text }}</p>
+            <!-- <p class="card-text">{{ Organization.description_text }}</p> -->
             <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
             <a href="{% url 'donations:org_description' Organization.id %}"><button type="button" class="btn btn-light-blue btn-md" >Read more</button></a>
             <a href="{% url 'donations:checkout' Organization.id  %}" type="button" class="btn btn-light-blue btn-md" >Donate</a>

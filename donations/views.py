@@ -180,3 +180,10 @@ def org_description(request, pk):
         'org': org,
     }
     return render(request, 'donations/org_description.html', context)
+
+def task_description(request, pk):
+    task = Task.objects.get(id=pk)
+    context = {
+        'task': task,
+    }
+    return render(request, 'donations/task_description.html', context)
