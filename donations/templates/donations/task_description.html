@@ -16,15 +16,6 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
 <!-- Material Design Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-<script
-  src="https://code.jquery.com/jquery-3.5.1.js"
-  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-  crossorigin="anonymous"></script>
-<script
-  src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
-  integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
-  crossorigin="anonymous"></script>
 </head>
 
 <ul class="topnav">
@@ -34,14 +25,14 @@
   {% else %}
   <li><a href="/">Login</a></li>
   {% endif %}
-    <li><a class="active" href="/donations/donationslist">Donation organizations</a></li>
-    <li><a href="/donations/taskslist">Tasks</a>
+    <li><a href="/donations/donationslist">Donation organizations</a></li>
+    <li><a class="active" href="/donations/taskslist">Tasks</a>
     <li><a href="">Contact us</a></li>
   
     <li class="dropdown left">
       <a href="javascript:void(0)" class="dropbtn">Profile Information </i></a>
       <div class="dropdown-content">
-        <a href="/donations/profile">Profile</a>
+        <a href="/donations">Profile</a>
         <a href="">Notifications</a>
         <a href="">favorite/recommended organizations/tasks</a>
         <a href="">Private messaging</a>
@@ -160,7 +151,7 @@ button {
   border-radius: 100px;
   border: none;
   background: #719BE6;
-  width: 100%;
+  width: 50%;
   padding: 10px;
   color: #FFFFFF;
   margin-top: 25px;
@@ -186,69 +177,46 @@ a:hover {
 </style>
 
 <body>
-    <!--Grid row-->
-<div class="form-container container center" style="width:800px; margin-top: 100px; margin-left:320px;"  >
-    <h2 style="font-family:sans-serif; text-align:center;">Organizations</h2>
-    <a class="btn btn-primary" href="/donations/donationslist/organizationform" role="button">Add Organization</a>
-    <div id="listContainer" class="row row-cols-1 row-cols-md-2" data-lengthOfList='{{ list_length }}'>
-    {% if list_of_organizations %}
-    {% for Organization in list_of_organizations %}
-      <div class="col mb-4">
-        <!-- Card -->
-        <div class="card">
-    
-          <!--Card image-->
-          <div class="view overlay">
-            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg"
-              alt="Card image cap">
-            <a href="#!">
-              <div class="mask rgba-white-slight"></div>
-            </a>
-          </div>
-    
-          <!--Card content-->
-          <div id="cardContent-{{ forloop.counter0 }}" class="card-body" data-fundsGoal='{{ Organization.fundsGoal }}'>
-    
-            <!--Title-->
-            <h4 class="card-title">{{ Organization.organization_text }}</h4>
-            <!--Text-->
-            <!-- <p class="card-text">{{ Organization.description_text }}</p> -->
-            <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-            <a href="{% url 'donations:org_description' Organization.id %}"><button type="button" class="btn btn-light-blue btn-md" >Read more</button></a>
-            <a href="{% url 'donations:checkout' Organization.id  %}" type="button" class="btn btn-light-blue btn-md" >Donate</a>
-            <div><span id="totalRaised" value="{{ Organization.fundsRaised }}"> ${{ Organization.fundsRaised }} out of ${{ Organization.fundsGoal }} raised</span></div>
-            <div class="progbar-{{ forloop.counter0 }}" id="progressbar-{{ forloop.counter0 }}" value="{{ Organization.fundsRaised }}" data-totalRasied="5"></div>
-          </div>
-    
-        </div>
-        <!-- Card -->
-      </div>
-    {% endfor %}
-    {% else %}
-       <p>No organizations are available.</p>
-    {% endif %}   
-    </div>
-  
-  </div>
   <!--Grid row-->
-</body>
+<div class="form-container container center" style="width:800px; margin-top: 100px; margin-left:320px;"  >
 
-<script>
-
-  var length = $('#listContainer').attr('data-lengthOfList')
-  console.log("length", length)
-
-  $(function() {
-    for(var i = 0; i<length; i++){
-      var fundsGoal = parseInt($('#cardContent-' + i.toString()).attr('data-fundsGoal'))
-      console.log("hello",fundsGoal)
-      $('.progbar-' + i.toString()).progressbar({
-        value: parseInt((parseInt($('.progbar-' + i.toString()).attr('value'))/fundsGoal) * 100)
-      });
-    }
-  });
+  <!-- <h4 style="font-family:sans-serif; text-align:center;">Organization Description</h4> -->
   
-  </script>
+    <div class="col mb-4">
+
+      <h1 style="font-family:sans-serif; text-align:center;">{{ task.task_text }}</h1>
+
+
+      <!-- Card -->
+      <!-- <div class="card"> -->
+  
+        <!--Card image-->
+        <!-- <div class="view overlay">
+          <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg"
+            alt="Card image cap">
+          <a href="#!">
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+   -->
+        <!--Card content-->
+        <div class="card-body">
+  
+          <!--Title-->
+          <h4 class="card-title">{{ task.description_text }}</h4>
+          <!--Text-->
+          <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+          <!-- <button type="button" class="btn btn-light-blue btn-md" >Read more</button> -->
+          <a href="/donations/taskslist/"> Return to List of Tasks</button></a>
+        </div>
+  
+      <!-- </div> -->
+      <!-- Card -->
+  </div>
+
+</div>
+<!--Grid row-->
+</body>
 
 <footer
 class="page-footer unique-color-dark"
