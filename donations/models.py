@@ -22,6 +22,7 @@ class Task(models.Model):
     is_done = models.BooleanField(default=False)
     # task_owner = models.ForeignKey(
     #     User, on_delete=models.CASCADE, default=None)
+    is_done2 = models.BooleanField(default=False)
 
     def __str__(self):
         return self.task_text
