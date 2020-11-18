@@ -8,6 +8,7 @@ from .models import Profile
 from .forms import ProfileForm
 from .forms import UserForm
 import json
+from django.core.mail import send_mail
 
 # Create your views here.
 
@@ -47,10 +48,17 @@ def done_task(request, pk):
         task = Task.objects.get(id=pk)
         task.is_done = True
         task.save()
+        send_mail(
+            'MicroDonations Task Complete :)',
+            'Your task was completed by ' + request.user.first_name + '!',
+            'cs3240project218@gmail.com',
+            [task.task_owner.email],
+            fail_silently=True,
+        )
     context = {
         'list_of_tasks': Task.objects.all()
     }
-    # return render(request, 'donations/listoftasks.html', context)
+
     return HttpResponseRedirect(reverse('donations:tasks'))
 
 
@@ -113,7 +121,7 @@ def add_task(request):
         task_text = request.POST['name']
         description_text = request.POST['body']
         t = Task(task_text=task_text,
-                 description_text=description_text)
+                 description_text=description_text, task_owner=request.user)
         t.save()
     return HttpResponseRedirect(reverse('donations:tasks'))
 
@@ -180,6 +188,7 @@ def org_description(request, pk):
         'org': org,
     }
     return render(request, 'donations/org_description.html', context)
+
 
 def task_description(request, pk):
     task = Task.objects.get(id=pk)

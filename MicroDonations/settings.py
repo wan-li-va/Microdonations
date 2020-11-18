@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'oe6&1cxt4r=rrs&&mfrzemmf4iq9$)lh7^x6nnv2x$sk^hrt(7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['https://micro-donations-cs3240.herokuapp.com/']
 
@@ -149,3 +149,11 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = 'cs3240project218@gmail.com'
+EMAIL_HOST_PASSWORD = 'Ilovecs!'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
