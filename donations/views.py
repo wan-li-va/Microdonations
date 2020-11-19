@@ -48,13 +48,13 @@ def done_task(request, pk):
         task = Task.objects.get(id=pk)
         task.is_done = True
         task.save()
-        send_mail(
-            'MicroDonations Task Complete :)',
-            'Your task was completed by ' + request.user.first_name + '!',
-            'cs3240project218@gmail.com',
-            [task.task_owner.email],
-            fail_silently=True,
-        )
+        # send_mail(
+        #     'MicroDonations Task Complete :)',
+        #     'Your task was completed by ' + request.user.first_name + '!',
+        #     'cs3240project218@gmail.com',
+        #     [task.task_owner.email],
+        #     fail_silently=True,
+        # )
     context = {
         'list_of_tasks': Task.objects.all()
     }
