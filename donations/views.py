@@ -120,8 +120,10 @@ def add_task(request):
     if request.method == 'POST':
         task_text = request.POST['name']
         description_text = request.POST['body']
+        # t = Task(task_text=task_text,
+        #          description_text=description_text, task_owner=request.user)
         t = Task(task_text=task_text,
-                 description_text=description_text, task_owner=request.user)
+                 description_text=description_text)
         t.save()
     return HttpResponseRedirect(reverse('donations:tasks'))
 
