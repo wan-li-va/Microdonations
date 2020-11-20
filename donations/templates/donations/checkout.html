@@ -39,7 +39,7 @@
                     <h4>Total Funds Received: ${{org.fundsRaised}}</h4>
                     <hr>
                     <input type="number" name="myname"id="totalAmt"value="5.00"></input>
-                    
+                    <input type="button" value="submit" onclick="updateValue()">
                     <div id="paypal-button-container"></div>
 
                 </div>
@@ -81,18 +81,12 @@
         }
         var csrftoken = getCookie('csrftoken');
 
-        var total = '{{org.fundsRaised}}'
-        total = '1.01'
-        var productId = '{{org.id}}'
-        var amount = document.getElementById('totalAmt').value      
+        var productId = '{{org.id}}'    
 
-        // var valueEntered = parseFloat($('#totalAmt').val());
-
-        $(document).ready(function() {
-        $("#totalAmt").keyup(function() {
-            var valueEntered = parseInt($(this).html());
-            });
-        })
+        function updateValue() {
+            var typedInValue = parseFloat(document.getElementById("totalAmt").value);
+            return typedInValue;
+        }
 
         function completeOrder() {
             var url = "{% url 'donations:complete' %}"
@@ -103,7 +97,7 @@
                     'Content-type': 'application/json',
                     'X-CSRFToken': csrftoken,
                 },
-                body: JSON.stringify({ 'productId': productId, 'amount': amount })
+                body: JSON.stringify({ 'productId': productId, 'amount': updateValue() })
             })
         }
 
@@ -123,7 +117,7 @@
             return actions.order.create({
                 purchase_units: [{
                 amount: {
-                    value: amount
+                    value: updateValue()
                     }
                 }]
             });

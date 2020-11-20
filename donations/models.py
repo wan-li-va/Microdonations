@@ -20,8 +20,8 @@ class Task(models.Model):
     task_text = models.CharField(max_length=200)
     description_text = models.CharField(max_length=200)
     is_done = models.BooleanField(default=False)
-    # task_owner = models.ForeignKey(
-    #     User, on_delete=models.CASCADE, default=None)
+    task_owner = models.ForeignKey(
+        User, on_delete=models.CASCADE, default=None)
 
     def __str__(self):
         return self.task_text
