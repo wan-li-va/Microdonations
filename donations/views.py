@@ -103,9 +103,10 @@ def add_organization(request):
     if request.method == 'POST':
         organization_text = request.POST['name']
         description_text = request.POST['body']
+        organization_img_link = request.POST['img_link']
         total = request.POST['total']
         o = Organization(organization_text=organization_text,
-                         description_text=description_text, fundsGoal=total)
+                         description_text=description_text, fundsGoal=total, organization_img_link=organization_img_link)
         o.save()
     return HttpResponseRedirect(reverse('donations:donations'))
 
@@ -128,15 +129,32 @@ def add_task(request):
     return HttpResponseRedirect(reverse('donations:tasks'))
 
 
-def add_fav_org(request, organization):
-    if request.method == 'Post':
-        a = 1
-        print(a)
-        print(request.POST)
-        # org = request.POST['org']
-        # u = request.user
-        # u.profile.favorite_orgs.add(org)
-        return HttpResponseRedirect(reverse('donations:tasks'))
+def add_fav_org(request, pk):
+    if request.method == 'POST':
+        org = Organization.objects.get(id=pk)
+        u = request.user
+        u.profile.favorite_orgs.add(org)
+    return HttpResponseRedirect(reverse('donations:donations'))
+
+
+def del_fav_org(request, pk):
+    if request.method == 'POST':
+        print("hereeeeeeeeeeeeeeeeeeeeeeee")
+        org = Organization.objects.get(id=pk)
+        u = request.user
+        u.profile.favorite_orgs.remove(org)
+    return HttpResponseRedirect(reverse('donations:donations'))
+
+
+def fav_orgs(request):
+    u = request.user
+    list_of_organizations = u.profile.favorite_orgs.all()
+    list_length = len(list_of_organizations)
+    template = loader.get_template('donations/fav_orgs.html')
+    context = {
+        'list_of_organizations': list_of_organizations, 'list_length': list_length
+    }
+    return HttpResponse(template.render(context, request))
 
 
 """

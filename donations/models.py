@@ -11,6 +11,8 @@ class Organization(models.Model):
     description_text = models.CharField(max_length=200)
     fundsRaised = models.FloatField(null=True, blank=True, default=0.0)
     fundsGoal = models.FloatField(null=True, blank=True, default=0.0)
+    organization_img_link = models.CharField(
+        max_length=200, default="")
 
     def __str__(self):
         return self.organization_text
@@ -33,8 +35,7 @@ class Profile(models.Model):
     profile_bio = models.CharField(max_length=500)
     profile_location = models.CharField(max_length=100)
     profile_phone = models.CharField(max_length=100)
-    # favorite_orgs = models.ManyToManyField(Organization)
-    # image = models.ImageField(upload_to='profile_image', blank=True)
+    favorite_orgs = models.ManyToManyField(Organization)
 
 
 @receiver(post_save, sender=User)
