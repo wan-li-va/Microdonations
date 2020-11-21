@@ -9,8 +9,10 @@ from django.utils import timezone
 class Organization(models.Model):
     organization_text = models.CharField(max_length=200)
     description_text = models.CharField(max_length=200)
-    fundsRaised = models.FloatField(null=True, blank=True, default=0.0)
-    fundsGoal = models.FloatField(null=True, blank=True, default=0.0)
+    fundsRaised = models.DecimalField(
+        null=True, blank=True, default=0.00, max_digits=10, decimal_places=2)
+    fundsGoal = models.DecimalField(
+        null=True, blank=True, default=0.00, max_digits=10, decimal_places=2)
     organization_img_link = models.CharField(
         max_length=200, default="")
 
