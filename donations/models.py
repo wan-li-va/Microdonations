@@ -38,6 +38,9 @@ class Profile(models.Model):
     profile_location = models.CharField(max_length=100)
     profile_phone = models.CharField(max_length=100)
     favorite_orgs = models.ManyToManyField(Organization)
+    totalDonated = models.DecimalField(
+        null=True, blank=True, default=0.00, max_digits=10, decimal_places=2)
+    tasksCompleted = models.IntegerField(default=0)
 
 
 @receiver(post_save, sender=User)

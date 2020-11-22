@@ -1,7 +1,8 @@
+{% load socialaccount %}
 <html style="max-height: 600px;">
 <head>
 
-<title>Donation Organizations</title>
+<title>Home</title>
 
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -16,23 +17,32 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
 <!-- Material Design Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+<script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+<script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+  integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+  crossorigin="anonymous"></script>
 </head>
 
 <ul class="topnav">
-    <li><a href="/donations/">Home</a></li>
-    {% if user.is_authenticated %}
+  <li><a class="active" href="/donations/">Home</a></li>
+  {% if user.is_authenticated %}
   <li><a href="/logout">Logout</a></li>
   {% else %}
   <li><a href="/">Login</a></li>
   {% endif %}
-    <li><a class="active" href="/donations/donationslist">Donation organizations</a></li>
+    <li><a href="/donations/donationslist">Donation organizations</a></li>
     <li><a href="/donations/taskslist">Tasks</a>
     <li><a href="">Contact us</a></li>
   
     <li class="dropdown left">
       <a href="javascript:void(0)" class="dropbtn">Profile Information </i></a>
       <div class="dropdown-content">
-        <a href="/donations">Profile</a>
+        <a href="/donations/profile">Profile</a>
         <a href="">Notifications</a>
         <a href="/donations/fav_orgs">favorite/recommended organizations/tasks</a>
         <a href="">Spotlight page</a>
@@ -117,7 +127,8 @@ body {
 
 img {
   display: block;
-  width: 80px;
+  width: 100%;
+  height: auto;
   margin: 30px auto;
   box-shadow: 0 5px 10px -7px #333333;
   border-radius: 50%;
@@ -171,52 +182,48 @@ a:hover {
   text-decoration: underline;
 }
 
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
 
 </style>
 
 <body>
-  <!--Grid row-->
-<div class="form-container container center" style="width:800px; margin-top: 100px; margin-left:320px;"  >
+    <div class="centered">
+    <h3>Most Money Raised</h3>
+    {% if orgs_most_money %}
+    <ol type = "1">
+    {% for Organization in orgs_most_money %}
+    <li>{{ Organization.organization_text }}</li>
+    {% endfor %}
+    </ol>
+    {% endif %}
 
-  <!-- <h4 style="font-family:sans-serif; text-align:center;">Organization Description</h4> -->
-  
-    <div class="col mb-4">
+    <h3>Most Money Donated</h3>
+    {% if profiles_most_money %}
+    <ol type = "1">
+    {% for Profile in profiles_most_money %}
+    <li>{{ Profile.user.username }} {{ Profile.totalDonated }}</li>
+    {% endfor %}
+    </ol>
+    {% endif %}
+    
 
-      <h1 style="font-family:sans-serif; text-align:center;">{{ org.organization_text }}</h1>
-
-
-      <!-- Card -->
-      <!-- <div class="card"> -->
-  
-        <!--Card image-->
-        <div class="view overlay">
-          <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg"
-            alt="Card image cap">
-          <a href="#!">
-            <div class="mask rgba-white-slight"></div>
-          </a>
-        </div>
-  
-        <!--Card content-->
-        <div class="card-body">
-  
-          <!--Title-->
-          <h4 class="card-title">{{ org.description_text }}</h4>
-        
-          <!--Text-->
-          <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-          <!-- <button type="button" class="btn btn-light-blue btn-md" >Read more</button> -->
-          <a href="/donations/donationslist/"> Return to List of Organizations</button></a>
-        </div>
-  
-      <!-- </div> -->
-      <!-- Card -->
-  </div>
-
-</div>
-<!--Grid row-->
+    <h3>Most Tasks Completed</h3>
+    {% if profiles_most_tasks %}
+    <ol type = "1">
+    {% for Profile in profiles_most_tasks %}
+    <li>{{ Profile.user.username }} {{ Profile.tasksCompleted }}</li>
+    {% endfor %}
+    </ol>
+    {% endif %}
+    </div>
 </body>
-
 <footer
 class="page-footer unique-color-dark"
 style="height: 110px; width: 100vw; background-color: black; color: white"

@@ -40,7 +40,7 @@
       <a href="">Notifications</a>
       <a href="/donations/fav_orgs">favorite/recommended organizations/tasks</a>
       <a href="">Spotlight page</a>
-      <a href="">Friends list/leaderboard</a>
+      <a href="/donations/leaderboard">Friends list/leaderboard</a>
     </div>
   </li>
 </ul>
@@ -194,7 +194,9 @@
   <!--Grid row-->
   <div class="form-container container center" style="width:800px; margin-top: 100px; margin-left:320px;">
     <h2 style="font-family:sans-serif; text-align:center;">Tasks</h2>
+    {% if user.is_authenticated %}
     <a class="btn btn-primary" href="taskform" role="button">Add New Task</a>
+    {% endif %}
     <div class="row row-cols-1 row-cols-md-2">
       {% if list_of_tasks %}
       {% for Task in list_of_tasks %}

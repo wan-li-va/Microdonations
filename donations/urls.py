@@ -26,6 +26,8 @@ urlpatterns = [
          views.del_fav_org, name="del_fav_org"),
     path('fav_orgs',
          views.fav_orgs, name="fav_orgs"),
+    path('leaderboard',
+         views.leaderboard, name="leaderboard"),
     path('checkout/<int:pk>/', views.checkout, name="checkout"),
     path('complete/', views.paymentComplete, name="complete"),
     path('simple-checkout/', views.simpleCheckout, name="simple-checkout"),

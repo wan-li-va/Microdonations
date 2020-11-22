@@ -9,6 +9,7 @@ from .forms import ProfileForm
 from .forms import UserForm
 import json
 from django.core.mail import send_mail
+from decimal import Decimal
 
 # Create your views here.
 
@@ -48,6 +49,9 @@ def done_task(request, pk):
         task = Task.objects.get(id=pk)
         task.is_done = True
         task.save()
+        u = request.user
+        u.profile.tasksCompleted += 1
+        u.save()
         send_mail(
             'MicroDonations Task Complete :)',
             'Your task was completed by ' + request.user.first_name + '!',
@@ -191,9 +195,11 @@ def checkout(request, pk):
 def paymentComplete(request):
     body = json.loads(request.body)
     org = Organization.objects.get(id=body['productId'])
-    org.fundsRaised += float(body['amount'])
+    org.fundsRaised += Decimal(body['amount'])
     org.save()
-
+    u = request.user
+    u.profile.totalDonated += Decimal(body['amount'])
+    u.save()
     # return JsonResponse('Payment completed!', safe=False)
     # return HttpResponseRedirect(reverse('donations:tasks'))
 
@@ -216,3 +222,18 @@ def task_description(request, pk):
         'task': task,
     }
     return render(request, 'donations/task_description.html', context)
+
+
+def leaderboard(request):
+    orgs_most_money = Organization.objects.all(
+    ).reverse().order_by('fundsRaised')[:5]
+    # orgs_most_donators = Organization.objects.all().order_by('fundsRaised')
+    profiles_most_money = Profile.objects.all(
+    ).reverse().order_by('totalDonated')[:5]
+    profiles_most_tasks = Profile.objects.all(
+    ).reverse().order_by('tasksCompleted')[:5]
+    template = loader.get_template('donations/leaderboard.html')
+    context = {
+        'orgs_most_money': orgs_most_money, 'profiles_most_money': profiles_most_money, 'profiles_most_tasks': profiles_most_tasks,
+    }
+    return HttpResponse(template.render(context, request))
