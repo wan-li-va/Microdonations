@@ -99,23 +99,21 @@
     {% endif %}
     <li><a class="active" href="/donations/donationslist">Donation organizations</a></li>
     <li><a href="/donations/taskslist">Tasks</a>
-    <li><a href="">Contact us</a></li>
+    <li><a href="/donations/contact">Contact us</a></li>
 
     <li class="dropdown left">
         <a href="javascript:void(0)" class="dropbtn">Profile Information </i></a>
         <div class="dropdown-content">
             <a href="/donations/profile">Profile</a>
-            <a href="">Notifications</a>
-            <a href="/donations/fav_orgs">favorite/recommended organizations/tasks</a>
-            <a href="">Spotlight page</a>
-            <a href="/donations/leaderboard">Friends list/leaderboard</a>
+            <a href="/donations/fav_orgs">Favorited Organizations</a>
+            <a href="/donations/spotlight">Spotlight Page</a>
+            <a href="/donations/leaderboard">Leaderboard</a>
         </div>
     </li>
 </ul>
-
 <div>
     <h1>Add a new organization to the donations list!</h1>
-    <form action="{% url 'donations:add_organization'%}" method="post">
+    <form action="{% url 'donations:add_organization'%}" method="post" id="form">
         {% csrf_token %}
         <div class="form-group">
             <label for="name">Name of the organization:</label>
@@ -127,13 +125,37 @@
         </div>
         <div class="form-group">
             <label for="info">Fundraising Goal:</label>
-            <textarea class="form-control" id="info" rows="3" name="total"></textarea>
+            <textarea class="form-control" id="goal" rows="3" name="total"></textarea>
         </div>
         <div class="form-group">
             <label for="info">Image Link:</label>
-            <textarea class="form-control" id="info" rows="3" name="img_link"></textarea>
+            <textarea class="form-control" id="img" rows="3" name="img_link"></textarea>
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
+        <br>
+        <div><span id="error" style="color:#FF0000" ;></span></div>
     </form>
+
+    <script>
+        const name = document.getElementById('name')
+        const info = document.getElementById('info')
+        const goal = document.getElementById('goal')
+        const form = document.getElementById('form')
+        const errorElement = document.getElementById('error')
+
+        form.addEventListener('submit', (e) => {
+            let messages = []
+            if (name.value === '' || name.value == null) {
+                messages.push('Name is required')
+            }
+            if (!((/^^((\d)*(\.?)(\d)*)$/.test(goal.value)))) {
+                messages.push('Goal must be a number')
+            }
+            if (messages.length > 0) {
+                e.preventDefault()
+                errorElement.innerText = messages.join(', ')
+            }
+        })
+    </script>
 </div>

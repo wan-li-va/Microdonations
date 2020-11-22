@@ -43,9 +43,8 @@
       <a href="javascript:void(0)" class="dropbtn">Profile Information </i></a>
       <div class="dropdown-content">
         <a href="/donations/profile">Profile</a>
-        <a href="">Notifications</a>
         <a href="/donations/fav_orgs">favorite/recommended organizations/tasks</a>
-        <a href="">Spotlight page</a>
+        <a href="/donations/spotlight">Spotlight page</a>
         <a href="/donations/leaderboard">Friends list/leaderboard</a>
       </div>
     </li>
@@ -189,13 +188,13 @@ a:hover {
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
 }
-
-
 </style>
 
 <body>
-    <div class="centered">
-    <h3>Most Money Raised</h3>
+    <div class="centered" style="width: 30%; padding-top: 20%; padding-bottom: 20;">
+    <h1>Leaderboard</h1>
+    </br>
+    <header class="bg-primary p-4 text-white text-center"><h3>Most Money Raised</h3></header>
     {% if orgs_most_money %}
     <ol type = "1">
     {% for Organization in orgs_most_money %}
@@ -204,30 +203,35 @@ a:hover {
     </ol>
     {% endif %}
 
-    <h3>Most Money Donated</h3>
+    <header class="bg-success p-4 text-white text-center"><h3>Most Money Donated</h3></header>
     {% if profiles_most_money %}
     <ol type = "1">
     {% for Profile in profiles_most_money %}
-    <li>{{ Profile.user.username }} {{ Profile.totalDonated }}</li>
+    <li>{{ Profile.user.username }} - ${{ Profile.totalDonated }}</li>
     {% endfor %}
     </ol>
     {% endif %}
     
 
-    <h3>Most Tasks Completed</h3>
+    <header class="bg-info p-4 text-white text-center"><h3>Most Tasks Completed</h3></header>
     {% if profiles_most_tasks %}
     <ol type = "1">
     {% for Profile in profiles_most_tasks %}
-    <li>{{ Profile.user.username }} {{ Profile.tasksCompleted }}</li>
+    <li>{{ Profile.user.username }} - {{ Profile.tasksCompleted }}</li>
     {% endfor %}
     </ol>
     {% endif %}
     </div>
+</div>
+
 </body>
+
+<!-- 
 <footer
-class="page-footer unique-color-dark"
-style="height: 100px; width: 100vw; position: absolute; background-color: black; color: white"
+class="site-footer unique-color-dark"
+style="height: 110px; width: 100vw; position: absolute; bottom: 0; background-color: black; color: white"
 >
     <small>Author: names</small><br /><small><a href="mailto:rvj8uc@virginia.edu">emails</a></small><br /><small>&copy; Copyright 2020, names</small>
-</footer>
+
+</footer> -->
 </html>

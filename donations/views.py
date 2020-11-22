@@ -161,6 +161,17 @@ def fav_orgs(request):
     return HttpResponse(template.render(context, request))
 
 
+def spotlight(request):
+    u = request.user
+    list_of_organizations = Organization.objects.all().filter(is_spotlighted=True)
+    list_length = len(list_of_organizations)
+    template = loader.get_template('donations/spotlight.html')
+    context = {
+        'list_of_organizations': list_of_organizations, 'list_length': list_length
+    }
+    return HttpResponse(template.render(context, request))
+
+
 """
 def review(request):
     if request.method == 'POST':
@@ -236,4 +247,9 @@ def leaderboard(request):
     context = {
         'orgs_most_money': orgs_most_money, 'profiles_most_money': profiles_most_money, 'profiles_most_tasks': profiles_most_tasks,
     }
+    return HttpResponse(template.render(context, request))
+
+def contact(request):
+    template = loader.get_template('donations/contact.html')
+    context = {}
     return HttpResponse(template.render(context, request))
