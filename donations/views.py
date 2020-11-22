@@ -25,7 +25,7 @@ def login(request):
 
 
 def donations(request):
-    list_of_organizations = Organization.objects.all()
+    list_of_organizations = Organization.objects.all().order_by('id')
     list_length = len(list_of_organizations)
     template = loader.get_template('donations/listofdonations.html')
     context = {
@@ -35,7 +35,7 @@ def donations(request):
 
 
 def tasks(request):
-    list_of_tasks = Task.objects.all()
+    list_of_tasks = Task.objects.all().order_by('id')
     template = loader.get_template('donations/listoftasks.html')
     context = {
         'list_of_tasks': list_of_tasks,
