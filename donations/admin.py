@@ -5,7 +5,8 @@ from .models import Organization, Task, Profile
 
 class OrganizationAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None,               {'fields': ['organization_text']}),
+        (None,               {'fields': [
+         'organization_text', 'is_spotlighted']}),
         ('Description', {'fields': ['description_text']}),
     ]
     list_display = ('organization_text', 'description_text')

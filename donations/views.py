@@ -163,9 +163,9 @@ def fav_orgs(request):
 
 def spotlight(request):
     u = request.user
-    list_of_organizations = u.profile.favorite_orgs.all()
+    list_of_organizations = Organization.objects.all().filter(is_spotlighted=True)
     list_length = len(list_of_organizations)
-    template = loader.get_template('donations/fav_orgs.html')
+    template = loader.get_template('donations/spotlight.html')
     context = {
         'list_of_organizations': list_of_organizations, 'list_length': list_length
     }
