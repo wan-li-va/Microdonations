@@ -151,7 +151,7 @@
             messages.push('Name is required')
           }
           if (!((/^^((\d)*(\.?)(\d)*)$/.test(goal.value)))) {
-            messages.push('Value must be a number')
+            messages.push('Goal must be a number')
           }
           if (messages.length > 0) {
             e.preventDefault()
