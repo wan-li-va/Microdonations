@@ -205,13 +205,24 @@
     display: table;
     clear: both;
   }
+
+  .centered {
+    width: 100%;
+    margin-bottom: 150px;
+    margin-top: 50px;
+    padding: 20px;
+    background-color: whitesmoke;
+    border: 3px solid darkgray;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
 </style>
 
 
 <body>
   <div class="wrapper">
 
-      <div class="centered" style="width: 100%; margin-bottom:150px; margin-top: 50px; padding-top: 20px; background-color: whitesmoke;">
+      <div class="centered" >
         <h1>Leaderboard!</h1>
 
 
@@ -219,6 +230,7 @@
 
           <div class="column">
           <header class="bg-primary p-4 text-white text-center"><h3>Most Money Raised</h3></header>
+          </br>
           {% if orgs_most_money %}
           <ol type = "1">
           {% for Organization in orgs_most_money %}
@@ -230,6 +242,7 @@
 
           <div class="column">
           <header class="bg-success p-4 text-white text-center"><h3>Most Money Donated</h3></header>
+          </br>
           {% if profiles_most_money %}
           <ol type = "1">
           {% for Profile in profiles_most_money %}
@@ -241,6 +254,7 @@
 
           <div class="column">
           <header class="bg-info p-4 text-white text-center"><h3>Most Tasks Completed</h3></header>
+          </br>
           {% if profiles_most_tasks %}
           <ol type = "1">
           {% for Profile in profiles_most_tasks %}
