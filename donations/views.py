@@ -237,3 +237,8 @@ def leaderboard(request):
         'orgs_most_money': orgs_most_money, 'profiles_most_money': profiles_most_money, 'profiles_most_tasks': profiles_most_tasks,
     }
     return HttpResponse(template.render(context, request))
+
+def contact(request):
+    template = loader.get_template('donations/contact.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
