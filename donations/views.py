@@ -161,6 +161,17 @@ def fav_orgs(request):
     return HttpResponse(template.render(context, request))
 
 
+def spotlight(request):
+    u = request.user
+    list_of_organizations = Organization.objects.all().filter(is_spotlighted=True)
+    list_length = len(list_of_organizations)
+    template = loader.get_template('donations/spotlight.html')
+    context = {
+        'list_of_organizations': list_of_organizations, 'list_length': list_length
+    }
+    return HttpResponse(template.render(context, request))
+
+
 """
 def review(request):
     if request.method == 'POST':

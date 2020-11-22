@@ -38,10 +38,16 @@
   <li class="dropdown left">
     <a href="javascript:void(0)" class="active" class="dropbtn">Profile Information </i></a>
     <div class="dropdown-content">
-      <a class="active" href="/donations/profile">Profile</a>
-      <a href="/donations/fav_orgs">Favorited Organizations</a>
-      <a href="">Spotlight Page</a>
-      <a href="/donations/leaderboard">Leaderboard</a>
+      <<<<<<< HEAD <a class="active" href="/donations/profile">Profile</a>
+        <a href="/donations/fav_orgs">Favorited Organizations</a>
+        <a href="">Spotlight Page</a>
+        <a href="/donations/leaderboard">Leaderboard</a>
+        =======
+        <a class="active" href="">Profile</a>
+        <a href="/donations/fav_orgs">favorite/recommended organizations/tasks</a>
+        <a href="/donations/spotlight">Spotlight page</a>
+        <a href="/donations/leaderboard">Friends list/leaderboard</a>
+        >>>>>>> origin
     </div>
   </li>
 </ul>
@@ -193,11 +199,13 @@
 <body>
 
   {% if user.is_authenticated %}
-  <div class="form-container container center" style="text-align: center; width: 1000%; padding-top: 5em;">
-    <h1>Hi User {{ user.username }} Edit Your Profile Info!</h1>
+  <div class="form-container container center"
+    style="text-align: center; width: 1000%; padding-top: 4em; margin-left: 300px; ">
+    <h1>Hi {{ user.username }} Edit Your Profile Info!</h1>
   </div>
 
-  <form method="POST">
+  <form method="POST" class="center" style="position: absolute; top: 15%;
+  left: 33%;">
     {% csrf_token %}
     <div style="width: 30em">
       {{user_form}}
@@ -216,7 +224,7 @@
 
 </body>
 <footer class="page-footer unique-color-dark"
-  style="height: 110px; width: 100vw; background-color: black; color: white">
+  style="height: 110px; width: 100vw; position: relative; background-color: black; color: white">
   <div class="footer-copyright" style="bottom: 0;">
     <small>Author: names</small><br /><small><a href="mailto:rvj8uc@virginia.edu">emails</a></small><br /><small>&copy;
       Copyright 2020, names</small>
