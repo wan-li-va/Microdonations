@@ -115,7 +115,7 @@
 
 <div>
     <h1>Add a new task you need help with!</h1>
-    <form action="{% url 'donations:add_task'%}" method="post">
+    <form action="{% url 'donations:add_task'%}" method="post" id="form">
         {% csrf_token %}
         <div class="form-group">
             <label for="name">Title of the task:</label>
@@ -127,5 +127,26 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
+        <div><span id="error" style="color:#FF0000";></span></div>
     </form>
+    <script>
+        const name = document.getElementById('name')
+        const info = document.getElementById('info')
+        const form = document.getElementById('form')
+        const errorElement = document.getElementById('error')
+        
+        form.addEventListener('submit', (e) => {
+          let messages = []
+          if (name.value === '' || name.value == null) {
+            messages.push('Name is required')
+          }
+          if (info.value === '' || info.value == null) {
+            messages.push('Info is required')
+          }
+          if (messages.length > 0) {
+            e.preventDefault()
+            errorElement.innerText = messages.join(', ')
+          }
+        })
+    </script>
 </div>

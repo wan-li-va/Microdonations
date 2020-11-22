@@ -112,10 +112,9 @@
         </div>
     </li>
 </ul>
-
 <div>
     <h1>Add a new organization to the donations list!</h1>
-    <form action="{% url 'donations:add_organization'%}" method="post">
+    <form action="{% url 'donations:add_organization'%}" method="post" id="form">
         {% csrf_token %}
         <div class="form-group">
             <label for="name">Name of the organization:</label>
@@ -127,13 +126,37 @@
         </div>
         <div class="form-group">
             <label for="info">Fundraising Goal:</label>
-            <textarea class="form-control" id="info" rows="3" name="total"></textarea>
+            <textarea class="form-control" id="goal" rows="3" name="total"></textarea>
         </div>
         <div class="form-group">
             <label for="info">Image Link:</label>
-            <textarea class="form-control" id="info" rows="3" name="img_link"></textarea>
+            <textarea class="form-control" id="img" rows="3" name="img_link"></textarea>
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
+        <br>
+        <div><span id="error" style="color:#FF0000";></span></div>
     </form>
+    
+    <script>
+        const name = document.getElementById('name')
+        const info = document.getElementById('info')
+        const goal = document.getElementById('goal')
+        const form = document.getElementById('form')
+        const errorElement = document.getElementById('error')
+        
+        form.addEventListener('submit', (e) => {
+          let messages = []
+          if (name.value === '' || name.value == null) {
+            messages.push('Name is required')
+          }
+          if (!((/^^((\d)*(\.?)(\d)*)$/.test(goal.value)))) {
+            messages.push('Value must be a number')
+          }
+          if (messages.length > 0) {
+            e.preventDefault()
+            errorElement.innerText = messages.join(', ')
+          }
+        })
+    </script>
 </div>
