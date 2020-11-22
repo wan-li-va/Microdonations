@@ -15,6 +15,7 @@ class Organization(models.Model):
         null=True, blank=True, default=0.00, max_digits=10, decimal_places=2)
     organization_img_link = models.CharField(
         max_length=200, default="")
+    is_spotlighted = models.BooleanField(default=False)
 
     def __str__(self):
         return self.organization_text
