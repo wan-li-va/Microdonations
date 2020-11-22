@@ -83,6 +83,7 @@
 
 
 <style>
+  
     ul.topnav {
         list-style-type: none;
         margin: 0;
@@ -164,6 +165,7 @@
         display: flex;
         flex-direction: column;
         padding: 10vh 10vw;
+        padding-bottom: 0%;
         width: 100vw;
         align-items: center;
         justify-content: center;
@@ -192,55 +194,66 @@
         padding: 5vw;
     }
 
-    .sketchy {
-        padding: 0 5vw;
-        display: inline-block;
-        border: 3px solid #333333;
-        font-size: 2.5rem;
-        border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%;
-        text-transform: uppercase;
-        letter-spacing: 0.3ch;
-        background: #ffffff;
-        position: relative;
-        margin-bottom: 5vh;
-    }
+      .column {
+    float: left;
+    width: 33.33%;
+    padding: 20px;
+  }
+
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 </style>
 
 
 <body>
   <div class="wrapper">
-      <div class="centered" style="width: 40%; background-color: whitesmoke;">
+
+      <div class="centered" style="width: 100%; margin-bottom:150px; margin-top: 50px; padding-top: 20px; background-color: whitesmoke;">
         <h1>Leaderboard!</h1>
-      </br>
-      <header class="bg-primary p-4 text-white text-center" style="width: 100%"><h3>Most Money Raised</h3></header>
-      {% if orgs_most_money %}
-      <ol type = "1">
-      {% for Organization in orgs_most_money %}
-      <li>{{ Organization.organization_text }}</li>
-      {% endfor %}
-      </ol>
-      {% endif %}
 
-      <header class="bg-success p-4 text-white text-center"><h3>Most Money Donated</h3></header>
-      {% if profiles_most_money %}
-      <ol type = "1">
-      {% for Profile in profiles_most_money %}
-      <li>{{ Profile.user.username }} - ${{ Profile.totalDonated }}</li>
-      {% endfor %}
-      </ol>
-      {% endif %}
 
-      <header class="bg-info p-4 text-white text-center"><h3>Most Tasks Completed</h3></header>
-      {% if profiles_most_tasks %}
-      <ol type = "1">
-      {% for Profile in profiles_most_tasks %}
-      <li>{{ Profile.user.username }} - {{ Profile.tasksCompleted }}</li>
-      {% endfor %}
-      </ol>
-      {% endif %}
+        <div class="row">
+
+          <div class="column">
+          <header class="bg-primary p-4 text-white text-center"><h3>Most Money Raised</h3></header>
+          {% if orgs_most_money %}
+          <ol type = "1">
+          {% for Organization in orgs_most_money %}
+          <li>{{ Organization.organization_text }}</li>
+          {% endfor %}
+          </ol>
+          {% endif %}
+          </div>
+
+          <div class="column">
+          <header class="bg-success p-4 text-white text-center"><h3>Most Money Donated</h3></header>
+          {% if profiles_most_money %}
+          <ol type = "1">
+          {% for Profile in profiles_most_money %}
+          <li>{{ Profile.user.username }} - ${{ Profile.totalDonated }}</li>
+          {% endfor %}
+          </ol>
+          {% endif %}
+          </div>
+
+          <div class="column">
+          <header class="bg-info p-4 text-white text-center"><h3>Most Tasks Completed</h3></header>
+          {% if profiles_most_tasks %}
+          <ol type = "1">
+          {% for Profile in profiles_most_tasks %}
+          <li>{{ Profile.user.username }} - {{ Profile.tasksCompleted }}</li>
+          {% endfor %}
+          </ol>
+          {% endif %}
+          </div>
+
       </div>
 
   </div>
+
 </body>
 
 
@@ -256,40 +269,3 @@
 </footer>
 
 </html>
-
-<!-- 
-<body>
-  <div class="wrapper">
-  <div class="centered" style="width: 40%; padding-top: 20%; position: absolute; padding-bottom: 20px; background-color: whitesmoke;">
-    <h1>Leaderboard</h1>
-    </br>
-    <header class="bg-primary p-4 text-white text-center"><h3>Most Money Raised</h3></header>
-    {% if orgs_most_money %}
-    <ol type = "1">
-    {% for Organization in orgs_most_money %}
-    <li>{{ Organization.organization_text }}</li>
-    {% endfor %}
-    </ol>
-    {% endif %}
-
-    <header class="bg-success p-4 text-white text-center"><h3>Most Money Donated</h3></header>
-    {% if profiles_most_money %}
-    <ol type = "1">
-    {% for Profile in profiles_most_money %}
-    <li>{{ Profile.user.username }} - ${{ Profile.totalDonated }}</li>
-    {% endfor %}
-    </ol>
-    {% endif %}
-    
-
-    <header class="bg-info p-4 text-white text-center"><h3>Most Tasks Completed</h3></header>
-    {% if profiles_most_tasks %}
-    <ol type = "1">
-    {% for Profile in profiles_most_tasks %}
-    <li>{{ Profile.user.username }} - {{ Profile.tasksCompleted }}</li>
-    {% endfor %}
-    </ol>
-    {% endif %}
-  </div>
-</div>
-</body> -->
