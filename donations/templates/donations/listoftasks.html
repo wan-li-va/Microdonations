@@ -31,15 +31,15 @@
   {% endif %}
   <li><a href="/donations/donationslist">Donation organizations</a></li>
   <li><a class="active" href="/donations/taskslist">Tasks</a>
-  <li><a href="">Contact us</a></li>
+  <li><a href="/donations/contact">Contact us</a></li>
 
   <li class="dropdown left">
     <a href="javascript:void(0)" class="dropbtn">Profile Information </i></a>
     <div class="dropdown-content">
       <a href="/donations/profile">Profile</a>
-      <a href="/donations/fav_orgs">favorite/recommended organizations/tasks</a>
-      <a href="/donations/spotlight">Spotlight page</a>
-      <a href="/donations/leaderboard">Friends list/leaderboard</a>
+      <a href="/donations/fav_orgs">Favorited Organizations</a>
+      <a href="/donations/spotlight">Spotlight Page</a>
+      <a href="/donations/leaderboard">Leaderboard</a>
     </div>
   </li>
 </ul>
@@ -163,17 +163,17 @@
   }
 
   button {
-  border-radius: 100px;
-  border: none;
-  background: #719BE6;
-  width: 100%;
-  padding: 10px;
-  color: #FFFFFF;
-  margin-top: 25px;
-  box-shadow: 0 2px 10px -3px #719BE6;
-  display: block;
-  margin: 55px auto 10px auto;
-}
+    border-radius: 100px;
+    border: none;
+    background: #719BE6;
+    width: 100%;
+    padding: 10px;
+    color: #FFFFFF;
+    margin-top: 25px;
+    box-shadow: 0 2px 10px -3px #719BE6;
+    display: block;
+    margin: 55px auto 10px auto;
+  }
 
   a {
     text-align: center;
@@ -195,6 +195,8 @@
     <h2 style="font-family:sans-serif; text-align:center;">Tasks</h2>
     {% if user.is_authenticated %}
     <a class="btn btn-primary" href="taskform" role="button">Add New Task</a>
+    <p>Once you finish one of the tasks, hit "Task Done" and it will send an email to the person who created the task,
+      notifying them that you have helped them complete it!</p>
     {% endif %}
     <div class="row row-cols-1 row-cols-md-2">
       {% if list_of_tasks %}
@@ -211,11 +213,12 @@
             <h4 class="card-title">{{Task.task_text}}</h4>
             <!--Text-->
             <!-- <p class="card-text">{{Task.description_text}}</p> -->
-            
+
             <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
 
-              <a href="{% url 'donations:task_description' Task.id %}"><button type="button" class="btn btn-light-blue btn-md" >Read more</button></a>
-              <div style="width:130px; margin-left: 100px;">
+            <a href="{% url 'donations:task_description' Task.id %}"><button type="button"
+                class="btn btn-light-blue btn-md">Read more</button></a>
+            <div style="width:130px; margin-left: 100px;">
               <form method="POST" action="{% url 'donations:done_task' Task.id %}">
                 {% csrf_token %}
                 {% if Task.is_done %}
@@ -245,8 +248,8 @@
 </body>
 <footer class="page-footer unique-color-dark"
   style="height: 110px; width: 100vw; position: relative; background-color: black; color: white">
-    <small>Author: names</small><br /><small><a href="mailto:rvj8uc@virginia.edu">emails</a></small><br /><small>&copy;
-      Copyright 2020, names</small>
+  <small>Author: names</small><br /><small><a href="mailto:rvj8uc@virginia.edu">emails</a></small><br /><small>&copy;
+    Copyright 2020, names</small>
 
 </footer>
 
