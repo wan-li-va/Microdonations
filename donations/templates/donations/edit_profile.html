@@ -188,11 +188,12 @@
 <body>
 
   {% if user.is_authenticated %}
-  <div class="form-container container center" style="text-align: center; width: 1000%; padding-top: 5em;">
-    <h1>Hi User {{ user.username }} Edit Your Profile Info!</h1>
+  <div class="form-container container center" style="text-align: center; width: 1000%; padding-top: 4em; margin-left: 300px; ">
+    <h1>Hi {{ user.username }} Edit Your Profile Info!</h1>
   </div>
 
-  <form method="POST">
+  <form method="POST" class="center" style="position: absolute; top: 15%;
+  left: 33%;">
     {% csrf_token %}
     <div style="width: 30em">
     {{user_form}}
