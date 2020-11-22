@@ -221,7 +221,11 @@
                 {% if Task.is_done %}
                 <button type="button" disable="true" class="btn btn-grey btn-md">Task Done</button>
                 {% else %}
+                {% if user.is_authenticated %}
                 <button type="submit" class="btn btn-blue btn-md">Do Task</button>
+                {% else %}
+                <button type="submit" class="btn btn-blue btn-md" disabled>Do Task</button>
+                {% endif %}
                 {% endif %}
               </form>
             </div>
