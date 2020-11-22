@@ -1,55 +1,61 @@
 {% load socialaccount %}
 <html style="max-height: 600px;">
+
 <head>
 
-<title>Home</title>
+  <title>Home</title>
 
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-<link href="css/addons-pro/cards-extended.min.css" rel="stylesheet">
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-<!-- Google Fonts -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-<!-- Bootstrap core CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
-<!-- Material Design Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link href="css/addons-pro/cards-extended.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
 </head>
 
 <ul class="topnav">
   <li><a href="/donations/">Home</a></li>
   {% if user.is_authenticated %}
-  <li><a class="active"href="/logout">Logout</a></li>
+  <li><a class="active" href="/logout">Logout</a></li>
   {% else %}
   <li><a class="active" href="/">Login</a></li>
   {% endif %}
-    <li><a href="/donations/donationslist">Donation organizations</a></li>
-    <li><a href="/donations/taskslist">Tasks</a>
-    <li><a href="">Contact us</a></li>
-  
-    <li class="dropdown left">
-      <a href="javascript:void(0)" class="dropbtn">Profile Information </i></a>
-      <div class="dropdown-content">
-        <a href="/donations/profile">Profile</a>
-        <a href="/donations/fav_orgs">favorite/recommended organizations/tasks</a>
-        <a href="/donations/spotlight">Spotlight page</a>
-        <a href="/donations/leaderboard">Friends list/leaderboard</a>
-      </div>
-    </li>
-  </ul>
+  <li><a href="/donations/donationslist">Donation organizations</a></li>
+  <li><a href="/donations/taskslist">Tasks</a>
+  <li><a href="/donations/contact">Contact us</a></li>
+
+  <li class="dropdown left">
+    <a href="javascript:void(0)" class="dropbtn">Profile Information </i></a>
+    <div class="dropdown-content">
+      <a href="/donations/profile">Profile</a>
+      <a href="/donations/fav_orgs">Favorited Organizations</a>
+      <a href="/donations/spotlight">Spotlight Page</a>
+      <a href="/donations/leaderboard">Leaderboard</a>
+    </div>
+  </li>
+</ul>
 
 
 <style>
-body {
-    background-color: #D3D3D3; 
-}
+  body {
+    background-color: #D3D3D3;
+  }
 
-body {margin: 0;}
+  body {
+    margin: 0;
+  }
 
-ul.topnav {
+  ul.topnav {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -57,150 +63,159 @@ ul.topnav {
     position: fixed;
     top: -30;
     width: 100%;
-    z-index:1;
-}
+    z-index: 1;
+  }
 
-ul.topnav li {float: left;}
+  ul.topnav li {
+    float: left;
+  }
 
-ul.topnav li a {
+  ul.topnav li a {
     display: block;
     color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-}
+  }
 
-ul.topnav li:hover a:not(.active) {
+  ul.topnav li:hover a:not(.active) {
     background-color: #D3D3D3;
     color: #000;
-}
+  }
 
-ul.topnav li a.active {
+  ul.topnav li a.active {
     background-color: #D2691E;
     color: white;
-}
+  }
 
-ul.topnav li.right {float: right;}
+  ul.topnav li.right {
+    float: right;
+  }
 
-@media screen and (max-width: 600px){
+  @media screen and (max-width: 600px) {
+
     ul.topnav,
-    ul.topnav {position: unset}
-    ul.topnav li.right, 
-    ul.topnav li {float: none;}
-}
+    ul.topnav {
+      position: unset
+    }
 
-ul.topnav .dropdown-content {
+    ul.topnav li.right,
+    ul.topnav li {
+      float: none;
+    }
+  }
+
+  ul.topnav .dropdown-content {
     display: none;
-    position:absolute;
+    position: absolute;
     background-color: white;
     min-width: 10px;
-    font-size:.9pc;
+    font-size: .9pc;
 
-}
-ul.topnav .dropdown-content a {
+  }
+
+  ul.topnav .dropdown-content a {
     color: black;
     text-decoration: none;
     display: block;
     width: 165px;
-    font-size:.9pc;
-}
-ul.topnav .dropdown:hover > .dropdown-content {
-  display: block;
-}
+    font-size: .9pc;
+  }
+
+  ul.topnav .dropdown:hover>.dropdown-content {
+    display: block;
+  }
 
 
-body {
-  background-color: #eeeeee;
-  width: 80px;
-  text-align: center;
-}
+  body {
+    background-color: #eeeeee;
+    width: 80px;
+    text-align: center;
+  }
 
-img {
-  display: block;
-  width: 80px;
-  margin: 30px auto;
-  box-shadow: 0 5px 10px -7px #333333;
-  border-radius: 50%;
-  
-}
+  img {
+    display: block;
+    width: 80px;
+    margin: 30px auto;
+    box-shadow: 0 5px 10px -7px #333333;
+    border-radius: 50%;
 
-.form {
-  background-color: #ffffff;
-  width: 500px;
-  margin: 50px auto 10px auto;
-  padding: 30px;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 10px -3px #333;
-  text-align: center;
-}
+  }
 
-input {
-  border-radius: 100px;
-  padding: 10px 15px;
-  width: 50%;
-  border: 1px solid #D9D9D9;
-  outline: none;
-  display: block;
-  margin: 20px auto 20px auto;
-}
+  .form {
+    background-color: #ffffff;
+    width: 500px;
+    margin: 50px auto 10px auto;
+    padding: 30px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px -3px #333;
+    text-align: center;
+  }
 
-button {
-  border-radius: 100px;
-  border: none;
-  background: #719BE6;
-  width: 50%;
-  padding: 10px;
-  color: #FFFFFF;
-  margin-top: 25px;
-  box-shadow: 0 2px 10px -3px #719BE6;
-  display: block;
-  margin: 55px auto 10px auto;
-}
+  input {
+    border-radius: 100px;
+    padding: 10px 15px;
+    width: 50%;
+    border: 1px solid #D9D9D9;
+    outline: none;
+    display: block;
+    margin: 20px auto 20px auto;
+  }
 
-a {
-  text-align: center;
-  margin-top: 30px;
-  color: #719BE6;
-  text-decoration: none;
-  padding: 5px;
-  display: inline-block;
-}
+  button {
+    border-radius: 100px;
+    border: none;
+    background: #719BE6;
+    width: 50%;
+    padding: 10px;
+    color: #FFFFFF;
+    margin-top: 25px;
+    box-shadow: 0 2px 10px -3px #719BE6;
+    display: block;
+    margin: 55px auto 10px auto;
+  }
 
-a:hover {
-  text-decoration: underline;
-}
+  a {
+    text-align: center;
+    margin-top: 30px;
+    color: #719BE6;
+    text-decoration: none;
+    padding: 5px;
+    display: inline-block;
+  }
 
-
+  a:hover {
+    text-decoration: underline;
+  }
 </style>
 
 <body>
-  <div class="form-container container center" style="margin-top: 80px; margin-left: 460px;"  >
+  <div class="form-container container center" style="margin-top: 80px; margin-left: 460px;">
     <div class="form" style>
 
       <div style="margin-top: 5em;">
         {% if user.is_authenticated %}
-          <p>Welcome, {{ user.username }} !</p>
-      
-          {% else %}
-          <a href="{% provider_login_url 'google' %}">Login with Google</a>
-          {% endif %}
-        </div>
+        <p>Welcome, {{ user.username }} !</p>
 
-        <img src="http://www.androidpolice.com/wp-content/themes/ap2/ap_resize/ap_resize.php?src=http%3A%2F%2Fwww.androidpolice.com%2Fwp-content%2Fuploads%2F2015%2F10%2Fnexus2cee_Search-Thumb-150x150.png&w=150&h=150&zc=3"> 
-                   
-         <a href="https://www.google.com/">Create account</a>
-      
+        {% else %}
+        <a href="{% provider_login_url 'google' %}">Login with Google</a>
+        {% endif %}
       </div>
-</div>
-  
+
+      <img
+        src="http://www.androidpolice.com/wp-content/themes/ap2/ap_resize/ap_resize.php?src=http%3A%2F%2Fwww.androidpolice.com%2Fwp-content%2Fuploads%2F2015%2F10%2Fnexus2cee_Search-Thumb-150x150.png&w=150&h=150&zc=3">
+
+      <a href="https://www.google.com/">Create account</a>
+
+    </div>
+  </div>
+
 </body>
-<footer
-class="page-footer unique-color-dark"
-style="height: 110px; width: 100vw; background-color: black; color: white"
->
-    <div class="footer-copyright" style="margin-top: 650px;">
-    <small>Author: names</small><br /><small><a href="mailto:rvj8uc@virginia.edu">emails</a></small><br /><small>&copy; Copyright 2020, names</small>
-</div>
+<footer class="page-footer unique-color-dark"
+  style="height: 110px; width: 100vw; position: relative; background-color: black; color: white">
+  <small>Author: names</small><br /><small><a href="mailto:rvj8uc@virginia.edu">emails</a></small><br /><small>&copy;
+    Copyright 2020, names</small>
 </footer>
+
 </html>
