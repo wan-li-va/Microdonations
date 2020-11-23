@@ -25,33 +25,23 @@
 </head>
 
 <ul class="topnav">
-  <li><a href="/donations/">Home</a></li>
+  <li><a href="/">Home</a></li>
   {% if user.is_authenticated %}
   <li><a href="/logout">Logout</a></li>
   {% else %}
-  <li><a href="/">Login</a></li>
+  <li><a href="/login">Login</a></li>
   {% endif %}
-<<<<<<< HEAD
-  <li><a href="/donations/donationslist">Donations organizations</a></li>
-=======
   <li><a href="/donations/donationslist">Donation Organizations</a></li>
->>>>>>> 93be67a0002d3cccde0e9431a67b9e0e769672ef
   <li><a href="/donations/taskslist">Tasks</a></li>
   <li><a href="/donations/contact">Contact us</a></li>
 
   <li class="dropdown left">
     <a href="javascript:void(0)" class="active" class="dropbtn">Profile Information </i></a>
     <div class="dropdown-content">
-      <<<<<<< HEAD <a class="active" href="/donations/profile">Profile</a>
-        <a href="/donations/fav_orgs">Favorited Organizations</a>
-        <a href="">Spotlight Page</a>
-        <a href="/donations/leaderboard">Leaderboard</a>
-        =======
         <a class="active" href="">Profile</a>
         <a href="/donations/fav_orgs">favorite/recommended organizations/tasks</a>
         <a href="/donations/spotlight">Spotlight page</a>
         <a href="/donations/leaderboard">Friends list/leaderboard</a>
-        >>>>>>> origin
     </div>
   </li>
 </ul>
