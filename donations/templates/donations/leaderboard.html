@@ -234,7 +234,7 @@
           {% if orgs_most_money %}
           <ol type = "1">
           {% for Organization in orgs_most_money %}
-          <li>{{ Organization.organization_text }}</li>
+          <li>{{ Organization.organization_text }} - {{ Organization.fundsRaised}}</li>
           {% endfor %}
           </ol>
           {% endif %}
