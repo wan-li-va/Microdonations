@@ -47,11 +47,12 @@
 
 <style>
   body {
-    background-color: #D3D3D3;
-  }
+    background-color: #eeeeee;
+    height: 100vh;
+    width: 100vw;
 
-  body {
-    margin: 0;
+    display: flex;
+    flex-direction: column;
   }
 
   ul.topnav {
@@ -60,7 +61,6 @@
     padding: 0;
     background-color: #333;
     position: fixed;
-    top: -30;
     width: 100%;
     z-index: 1;
   }
@@ -125,41 +125,13 @@
     display: block;
   }
 
-
-  body {
-    background-color: #eeeeee;
-    width: 80px;
-    text-align: center;
-  }
-
-  img {
-    display: block;
-    width: 80px;
-    margin: 30px auto;
-    box-shadow: 0 5px 10px -7px #333333;
-    border-radius: 50%;
-
-  }
-
   .form {
     background-color: #ffffff;
     width: 500px;
-    margin: 50px auto 10px auto;
-    padding: 30px;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 10px -3px #333;
     text-align: center;
-  }
-
-  input {
-    border-radius: 100px;
-    padding: 10px 15px;
-    width: 50%;
-    border: 1px solid #D9D9D9;
-    outline: none;
-    display: block;
-    margin: 20px auto 20px auto;
   }
 
   button {
@@ -167,15 +139,11 @@
     border: none;
     background: #719BE6;
     width: 100%;
-    padding: 10px;
     color: #FFFFFF;
-    margin-top: 25px;
     box-shadow: 0 2px 10px -3px #719BE6;
-    display: block;
-    margin: 55px auto 10px auto;
   }
 
-  a {
+  .email {
     text-align: center;
     margin-top: 30px;
     color: #719BE6;
@@ -184,81 +152,144 @@
     display: inline-block;
   }
 
-  a:hover {
+  .email:hover {
     text-decoration: underline;
   }
 
-  .centered {
+  .footer-copyright {
+    height: 110px;
+    width: 100vw;
+
+    background-color: black;
+    color: white;
+    text-align: center;
+  }
+
+  .page-footer {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    /* bring your own prefixes */
-    transform: translate(-50%, -50%);
+    bottom: 0;
+  }
+
+  .page-footer2 {
+    position: relative;
+    bottom: 0;
+  }
+
+  .authors {
+    margin-top: 1vh;
+  }
+
+  .page-container {
+    position: relative;
+    min-height: 100vh;
+    text-align: center;
+  }
+
+  .org-buttons {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
   }
 </style>
 
-<body>
-  <!--Grid row-->
-  <div class="form-container container center" style="width:800px; margin-top: 100px; margin-left:320px;">
-    <h2 style="font-family:sans-serif; text-align:center;">Tasks</h2>
-    {% if user.is_authenticated %}
-    <a class="btn btn-primary" href="taskform" role="button">Add New Task</a>
-    <p>Once you finish one of the tasks, hit "Task Done" and it will send an email to the person who created the task,
-      notifying them that you have helped them complete it!</p>
-    {% endif %}
-    <div class="row row-cols-1 row-cols-md-2">
-      {% if list_of_tasks %}
-      {% for Task in list_of_tasks %}
-      <div class="col mb-4">
-        <!-- Card -->
-        <div class="card">
+<div class="page-container">
+
+  <body>
+    <!--Grid row-->
+    <div class="form-container container center" style="width:800px; margin-top: 100px; margin-left:320px;">
+      <h2 style="font-family:sans-serif; text-align:center;">Tasks</h2>
+      {% if user.is_authenticated %}
+      <a class="btn btn-primary" href="taskform" role="button">Add New Task</a>
+      <p>Once you finish one of the tasks, hit "Task Done" and it will send an email to the person who created the task,
+        notifying them that you have helped them complete it!</p>
+      {% endif %}
+      <div class="row row-cols-1 row-cols-md-2">
+        {% if list_of_tasks %}
+        {% for Task in list_of_tasks %}
+        <div class="col mb-4">
+          <!-- Card -->
+          <div class="card">
 
 
-          <!--Card content-->
-          <div class="card-body">
+            <!--Card content-->
+            <div class="card-body">
 
-            <!--Title-->
-            <h4 class="card-title">{{Task.task_text}}</h4>
-            <!--Text-->
-            <!-- <p class="card-text">{{Task.description_text}}</p> -->
+              <!--Title-->
+              <h4 class="card-title">{{Task.task_text}}</h4>
+              <!--Text-->
+              <!-- <p class="card-text">{{Task.description_text}}</p> -->
 
-            <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+              <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+              <div class="org-buttons">
+                <a href="{% url 'donations:task_description' Task.id %}" type="button"
+                  class="btn btn-light-blue btn-md">Read more</a>
 
-            <a href="{% url 'donations:task_description' Task.id %}"><button type="button"
-                class="btn btn-light-blue btn-md">Read more</button></a>
-            <div style="width:130px; margin-left: 100px;">
-              <form method="POST" action="{% url 'donations:done_task' Task.id %}">
-                {% csrf_token %}
-                {% if Task.is_done %}
-                <button type="button" disable="true" class="btn btn-grey btn-md">Task Done</button>
-                {% else %}
-                {% if user.is_authenticated %}
-                <button type="submit" class="btn btn-blue btn-md">Do Task</button>
-                {% else %}
-                <button type="submit" class="btn btn-blue btn-md" disabled>Do Task</button>
-                {% endif %}
-                {% endif %}
-              </form>
+                <form method="POST" action="{% url 'donations:done_task' Task.id %}">
+                  {% csrf_token %}
+                  {% if Task.is_done %}
+                  <button type="button" disable="true" class="btn btn-grey btn-md">Task Done</button>
+                  {% else %}
+                  {% if user.is_authenticated %}
+                  <button type="submit" class="btn btn-blue btn-md">Do Task</button>
+                  {% else %}
+                  <button type="submit" class="btn btn-blue btn-md" disabled>Do Task</button>
+                  {% endif %}
+                  {% endif %}
+
+                </form>
+              </div>
+
             </div>
 
           </div>
-
+          <!-- Card -->
         </div>
-        <!-- Card -->
+        {% endfor %}
       </div>
-      {% endfor %}
-      {% else %}
-      <p>No tasks are available.</p>
-      {% endif %}
     </div>
-  </div>
-  <!--Grid row-->
-</body>
-<footer class="page-footer unique-color-dark"
-  style="height: 110px; width: 100vw; position: relative; background-color: black; color: white">
-  <small>Author: names</small><br /><small><a href="mailto:rvj8uc@virginia.edu">emails</a></small><br /><small>&copy;
-    Copyright 2020, names</small>
+    <!--Grid row-->
+  </body>
 
+  <footer class="page-footer2 unique-color-dark">
+    <div class=footer-copyright text-right py-3>
+      <div class="authors">
+        <small>Authors: Noal Zyglowicz, Wan Li, Rohith Jampani, Liana Poon</small><br />
+      </div>
+      <small>
+        <a class="email" href="mailto:ntz3sw@virginia.edu">ntz3sw@virginia.edu | </a>
+        <a class="email" href="mailto:wl9wgc@virginia.edu">wl9wgc@virginia.edu | </a>
+        <a class="email" href="mailto:rvj8uc@virginia.edu">rvj8uc@virginia.edu | </a>
+        <a class="email" href="mailto:lwp2fy@virginia.edu">lwp2fy@virginia.edu</a>
+      </small><br /><small>&copy;
+        Copyright 2020, MicroDonations</small>
+    </div>
+  </footer>
+
+  {% else %}
+  <p>No tasks are available.</p>
+
+</div>
+</div>
+<!--Grid row-->
+</body>
+
+<footer class="page-footer unique-color-dark">
+  <div class=footer-copyright text-right py-3>
+    <div class="authors">
+      <small>Authors: Noal Zyglowicz, Wan Li, Rohith Jampani, Liana Poon</small><br />
+    </div>
+    <small>
+      <a class="email" href="mailto:ntz3sw@virginia.edu">ntz3sw@virginia.edu | </a>
+      <a class="email" href="mailto:wl9wgc@virginia.edu">wl9wgc@virginia.edu | </a>
+      <a class="email" href="mailto:rvj8uc@virginia.edu">rvj8uc@virginia.edu | </a>
+      <a class="email" href="mailto:lwp2fy@virginia.edu">lwp2fy@virginia.edu</a>
+    </small><br /><small>&copy;
+      Copyright 2020, MicroDonations</small>
+  </div>
 </footer>
+{% endif %}
+</div>
 
 </html>

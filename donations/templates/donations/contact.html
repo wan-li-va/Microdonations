@@ -47,13 +47,22 @@
 
 
 <style>
+    body {
+        background-color: #eeeeee;
+        height: 100vh;
+        width: 100vw;
+
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+
     ul.topnav {
         list-style-type: none;
         margin: 0;
         padding: 0;
         background-color: #333;
         position: fixed;
-        top: -30;
         width: 100%;
         z-index: 1;
     }
@@ -118,12 +127,6 @@
         display: block;
     }
 
-
-    body {
-        background-color: #eeeeee;
-        text-align: center;
-    }
-
     .wrapper {
         display: flex;
         flex-direction: column;
@@ -169,7 +172,11 @@
         margin-bottom: 5vh;
     }
 
-    a {
+    .authors {
+        margin-top: 1vh;
+    }
+
+    .email {
         text-align: center;
         margin-top: 30px;
         color: #719BE6;
@@ -178,71 +185,93 @@
         display: inline-block;
     }
 
-    a:hover {
+    .email:hover {
         text-decoration: underline;
+    }
+
+    .footer-copyright {
+        height: 110px;
+        width: 100vw;
+        position: relative;
+        background-color: black;
+        color: white;
+        text-align: center;
+        bottom: 0;
     }
 </style>
 
-<body>
-    <div class="wrapper">
-        <div class="sketchy">
-            <h1>Meet the team!</h1>
-        </div>
-        <div class="member">
-            <img src="https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/49652859_2200606886867731_5280672748677365760_n.jpg?_nc_cat=110&ccb=2&_nc_sid=09cbfe&_nc_ohc=lM9zDUBpV5YAX-0oC-o&_nc_ht=scontent-iad3-1.xx&oh=9b986d362fd3f799bf437598e78c3525&oe=5FDEDE9B"
-                alt="image not displayed" />
-            <div class="description">
-                <h2>Noal Zyglowicz</h2>
-                <h6>Major: Computer Engineering</h6>
-                <h6>Year: 3rd Year</h6>
-                <h6>Email: ntz3sw@virginia.edu</h6>
-                <h6>Role on the team: Scrum Master</h6>
-                <p>Outside of school, I like to play soccer and I love dogs!</p>
-            </div>
-        </div>
-        <div class="member">
-            <div class="description">
-                <h2>Wan Li</h2>
-                <h6>Major: B.S. Computer Science</h6>
-                <h6>Year: 2nd Year</h6>
-                <h6>Email: wl9wgc@virginia.edu</h6>
-                <h6>Role on the team: Requirements Manager</h6>
-                <p>Outside of school, I love to dance and stay active!</p>
-            </div>
-            <img src="https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/74634601_957956344555079_6236770848594722816_n.jpg?_nc_cat=111&ccb=2&_nc_sid=174925&_nc_ohc=xHz9e2MIJjwAX9eZuJf&_nc_ht=scontent-iad3-1.xx&oh=8e06e2136b41ff4daefd5e4045affc17&oe=5FDE77C0"
-                alt="image not displayed" />
-        </div>
-        <div class="member">
-            <img src="https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/127144573_1305077453184455_39694360469510723_n.jpg?_nc_cat=106&ccb=2&_nc_sid=730e14&_nc_ohc=sk94GsEd-xwAX9nAOTB&_nc_ht=scontent-iad3-1.xx&oh=69f86271b318fc74c509f3b2c58b4da7&oe=5FDF94C7"
-                alt="image not displayed" />
-            <div class="description">
-                <h2>Rohith Jampani</h2>
-                <h6>Major: B.S. Computer Science</h6>
-                <h6>Year: 3rd Year</h6>
-                <h6>Email: rvj8uc@virginia.edu</h6>
-                <h6>Role on the team: Development Operations</h6>
-                <p>Outside of school, I like to play basketball or go to the gym!</p>
-            </div>
-        </div>
-        <div class="member">
-            <div class="description">
-                <h2>Liana Poon</h2>
-                <h6>Major: B.A. Computer Science and Studio Art</h6>
-                <h6>Year: 4th Year</h6>
-                <h6>Email: lwp2fy@virginia.edu</h6>
-                <h6>Role on the team: Testing Manager</h6>
-                <p>Outside of school, I like to dance!</p>
-            </div>
-            <img src="https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/72676807_1219645038227980_3866864949007482880_n.jpg?_nc_cat=106&ccb=2&_nc_sid=09cbfe&_nc_ohc=d2OA_I9DP_kAX_IaP8S&_nc_ht=scontent-iad3-1.xx&oh=b9807e69e7652171983b93a275d486f5&oe=5FDE9D51"
-                alt="image not displayed" />
-        </div>
-    </div>
-</body>
+<div class="page-container">
 
-<footer class="page-footer unique-color-dark"
-    style="height: 110px; width: 100vw; position: relative; background-color: black; color: white">
-    <small>Author: names</small><br /><small><a href="mailto:rvj8uc@virginia.edu">emails</a></small><br /><small>&copy;
-        Copyright 2020, names</small>
-</footer>
+    <body>
+        <div class="wrapper">
+            <div class="sketchy">
+                <h1>Meet the team!</h1>
+            </div>
+            <div class="member">
+                <img src="https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/49652859_2200606886867731_5280672748677365760_n.jpg?_nc_cat=110&ccb=2&_nc_sid=09cbfe&_nc_ohc=lM9zDUBpV5YAX-0oC-o&_nc_ht=scontent-iad3-1.xx&oh=9b986d362fd3f799bf437598e78c3525&oe=5FDEDE9B"
+                    alt="image not displayed" />
+                <div class="description">
+                    <h2>Noal Zyglowicz</h2>
+                    <h6>Major: Computer Engineering</h6>
+                    <h6>Year: 3rd Year</h6>
+                    <h6>Email: ntz3sw@virginia.edu</h6>
+                    <h6>Role on the team: Scrum Master</h6>
+                    <p>Outside of school, I like to play soccer and I love dogs!</p>
+                </div>
+            </div>
+            <div class="member">
+                <div class="description">
+                    <h2>Wan Li</h2>
+                    <h6>Major: B.S. Computer Science</h6>
+                    <h6>Year: 2nd Year</h6>
+                    <h6>Email: wl9wgc@virginia.edu</h6>
+                    <h6>Role on the team: Requirements Manager</h6>
+                    <p>Outside of school, I love to dance and stay active!</p>
+                </div>
+                <img src="https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/74634601_957956344555079_6236770848594722816_n.jpg?_nc_cat=111&ccb=2&_nc_sid=174925&_nc_ohc=xHz9e2MIJjwAX9eZuJf&_nc_ht=scontent-iad3-1.xx&oh=8e06e2136b41ff4daefd5e4045affc17&oe=5FDE77C0"
+                    alt="image not displayed" />
+            </div>
+            <div class="member">
+                <img src="https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/127144573_1305077453184455_39694360469510723_n.jpg?_nc_cat=106&ccb=2&_nc_sid=730e14&_nc_ohc=sk94GsEd-xwAX9nAOTB&_nc_ht=scontent-iad3-1.xx&oh=69f86271b318fc74c509f3b2c58b4da7&oe=5FDF94C7"
+                    alt="image not displayed" />
+                <div class="description">
+                    <h2>Rohith Jampani</h2>
+                    <h6>Major: B.S. Computer Science</h6>
+                    <h6>Year: 3rd Year</h6>
+                    <h6>Email: rvj8uc@virginia.edu</h6>
+                    <h6>Role on the team: Development Operations</h6>
+                    <p>Outside of school, I like to play basketball or go to the gym!</p>
+                </div>
+            </div>
+            <div class="member">
+                <div class="description">
+                    <h2>Liana Poon</h2>
+                    <h6>Major: B.A. Computer Science and Studio Art</h6>
+                    <h6>Year: 4th Year</h6>
+                    <h6>Email: lwp2fy@virginia.edu</h6>
+                    <h6>Role on the team: Testing Manager</h6>
+                    <p>Outside of school, I like to dance!</p>
+                </div>
+                <img src="https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/72676807_1219645038227980_3866864949007482880_n.jpg?_nc_cat=106&ccb=2&_nc_sid=09cbfe&_nc_ohc=d2OA_I9DP_kAX_IaP8S&_nc_ht=scontent-iad3-1.xx&oh=b9807e69e7652171983b93a275d486f5&oe=5FDE9D51"
+                    alt="image not displayed" />
+            </div>
+        </div>
+    </body>
+
+    <footer class="page-footer unique-color-dark">
+        <div class=footer-copyright text-right py-3>
+            <div class="authors">
+                <small>Authors: Noal Zyglowicz, Wan Li, Rohith Jampani, Liana Poon</small><br />
+            </div>
+            <small>
+                <a class="email" href="mailto:ntz3sw@virginia.edu">ntz3sw@virginia.edu | </a>
+                <a class="email" href="mailto:wl9wgc@virginia.edu">wl9wgc@virginia.edu | </a>
+                <a class="email" href="mailto:rvj8uc@virginia.edu">rvj8uc@virginia.edu | </a>
+                <a class="email" href="mailto:lwp2fy@virginia.edu">lwp2fy@virginia.edu</a>
+            </small><br /><small>&copy;
+                Copyright 2020, MicroDonations</small>
+        </div>
+    </footer>
+</div>
 
 </html>
