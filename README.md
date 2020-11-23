@@ -49,6 +49,20 @@ The Read More is where the key information about the task can be viewed
 ### Done Task
 The done task button is how a user can let the poster know the task has been complete. When the task is completed the poster will receive an email notification from who the task has been completed by.
 
+## Profile Page
+The profile page is where you view specifc information about both the app and personal information
+
+### Profile
+Clicking the profile tab takes you to a page allowing you to view your profile information. It also contains a link to a form to allow you to customize your information
+
+### Favorited Organizations
+Favorited organizations gives you access to view the organizations you have favorited so you have quicker access to them. Youcan remove any organizations that you are no longer interested in
+
+### Spotlight
+Spotlight shows a highlighted organization that has been selected for the admins for viewing for a particular outstanding reason or purpose.
+
+### Leaderboard
+Leaderboard shows the current top organizations, donaters, and task completers
 
 # Licensing Information:
 MIT License
