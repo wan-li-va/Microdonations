@@ -151,13 +151,16 @@ def del_fav_org(request, pk):
 
 
 def fav_orgs(request):
-    u = request.user
-    list_of_organizations = u.profile.favorite_orgs.all()
-    list_length = len(list_of_organizations)
+    if request.user.is_authenticated:
+        u = request.user
+        list_of_organizations = u.profile.favorite_orgs.all()
+        list_length = len(list_of_organizations)
+        context = {
+            'list_of_organizations': list_of_organizations, 'list_length': list_length
+        }
+    else:
+        context = {}
     template = loader.get_template('donations/fav_orgs.html')
-    context = {
-        'list_of_organizations': list_of_organizations, 'list_length': list_length
-    }
     return HttpResponse(template.render(context, request))
 
 
@@ -248,6 +251,7 @@ def leaderboard(request):
         'orgs_most_money': orgs_most_money, 'profiles_most_money': profiles_most_money, 'profiles_most_tasks': profiles_most_tasks,
     }
     return HttpResponse(template.render(context, request))
+
 
 def contact(request):
     template = loader.get_template('donations/contact.html')
