@@ -30,25 +30,181 @@
             background-color: #f0f0f0;
 
         }
+
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
     </style>
+
+<style>
+    body {
+      background-color: #D3D3D3;
+    }
+  
+    body {
+      margin: 0;
+    }
+  
+    ul.topnav {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      background-color: #333;
+      position: fixed;
+      top: -30;
+      width: 100%;
+      z-index: 1;
+    }
+  
+    ul.topnav li {
+      float: left;
+    }
+  
+    ul.topnav li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+  
+    ul.topnav li:hover a:not(.active) {
+      background-color: #D3D3D3;
+      color: #000;
+    }
+  
+    ul.topnav li a.active {
+      background-color: #D2691E;
+      color: white;
+    }
+  
+    ul.topnav li.right {
+      float: right;
+    }
+  
+    @media screen and (max-width: 600px) {
+  
+      ul.topnav,
+      ul.topnav {
+        position: unset
+      }
+  
+      ul.topnav li.right,
+      ul.topnav li {
+        float: none;
+      }
+    }
+  
+    ul.topnav .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: white;
+      min-width: 10px;
+      font-size: .9pc;
+  
+    }
+  
+    ul.topnav .dropdown-content a {
+      color: black;
+      text-decoration: none;
+      display: block;
+      width: 165px;
+      font-size: .9pc;
+    }
+  
+    ul.topnav .dropdown:hover>.dropdown-content {
+      display: block;
+    }
+  
+  
+    body {
+      background-color: #eeeeee;
+      width: 100vw;
+      text-align: center;
+    }
+  
+    img {
+      display: block;
+      width: 80px;
+      margin: 30px auto;
+      box-shadow: 0 5px 10px -7px #333333;
+      border-radius: 50%;
+  
+    }
+  
+    .form {
+      background-color: #ffffff;
+      width: 500px;
+      margin: 50px auto 10px auto;
+      padding: 30px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px -3px #333;
+      text-align: center;
+    }
+  
+    input {
+      border-radius: 100px;
+      padding: 10px 15px;
+      width: 50%;
+      border: 1px solid #D9D9D9;
+      outline: none;
+      display: block;
+      margin: 20px auto 20px auto;
+    }
+  
+    a {
+      text-align: center;
+      margin-top: 30px;
+      color: #719BE6;
+      text-decoration: none;
+      padding: 5px;
+      display: inline-block;
+    }
+  
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 
-<body>
-    <button href="">
-        <a href="/donations/donationslist">Return to List of Organizations</a>
-    </button>
+<ul class="topnav">
+    <li><a href="/donations/">Home</a></li>
+    {% if user.is_authenticated %}
+    <li><a href="/logout">Logout</a></li>
+    {% else %}
+    <li><a href="/">Login</a></li>
+    {% endif %}
+    <li><a href="/donations/donationslist">Donation Organizations</a></li>
+    <li><a href="/donations/taskslist">Tasks</a></li>
+    <li><a href="/donations/contact">Contact us</a></li>
+  
+    <li class="dropdown left">
+      <a href="javascript:void(0)" class="active" class="dropbtn">Profile Information </i></a>
+      <div class="dropdown-content">
+        <a class="active" href="">Profile</a>
+        <a href="/donations/fav_orgs">Favorited Organizations</a>
+        <a href="/donations/spotlight">Spotlight page</a>
+        <a href="/donations/leaderboard">Leaderboard</a>
+      </div>
+    </li>
+  </ul>
 
-    <div>
+<body>
+    <div class="centered" style="width: 50%">
         <div>
             <div class="col-lg">
                 <br>
                 <div class="card card-body">
                     <h3>{{org.name}}</h3>
                     <hr>
-                    <h4>Total Funds Received: ${{org.fundsRaised}}</h4>
+                    <h4>Donate to {{org.organization_text}}</h4>
                     <hr>
+                    <label>Amount To Donate</label>
                     <input type="number" name="myname"id="totalAmt"value="5.00"></input>
-                    <input type="button" value="submit" onclick="updateValue()">
                     <div id="paypal-button-container"></div>
 
                 </div>
@@ -56,7 +212,7 @@
         </div>
     </div>
 
-    <div style="width: 50%">
+    <!-- <div style="width: 50%">
     <br>
     <h6>Our app implements the PayPal API. Because we don't want to you to spend your own money to test our app we are using a sandbox account. To test our app, press pay with paypal and login in with the info below and click the pay now button to submit a fake payment.</h6>
     <br>
@@ -66,7 +222,7 @@
     <h6>PayPal Sandbox Account Password: Ilovecs!</h6>
     <br>
     <h6>We just want to reitterate these are NOT real payments</h6>
-    </div>
+    </div> -->
 
     <script
         src="https://www.paypal.com/sdk/js?client-id=AQQrZhN1d-YrlVEqMZC7CiAGzkNcSjKiaaqVsByEdAlEbhY_gwo18B99wQULfQxfonysp9HJBcKmylfr&currency=USD"></script>
