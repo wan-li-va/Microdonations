@@ -6,9 +6,9 @@ You can find the site hosted on Heroku at https://micro-donations-cs3240.herokua
 # Team 2-18 Infomation: 
 All work represented in this repo was created by the following team members on the project
 
-Rohith Jampani (rvj8uc)
-Wan Li (wl9wgc)
-Liana Poon (lwp2fy)
+Rohith Jampani (rvj8uc),
+Wan Li (wl9wgc),
+Liana Poon (lwp2fy),
 Noal Zyglowicz (ntz3sw)
 
 # Instructions on How to Use App:
