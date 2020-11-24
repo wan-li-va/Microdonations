@@ -39,7 +39,7 @@
   <li><a href="/donations/contact">Contact us</a></li>
 
   <li class="dropdown left">
-    <a href="javascript:void(0)" class="dropbtn">Profile Information </i></a>
+    <a href="javascript:void(0)" class="active dropbtn">Profile Information </i></a>
     <div class="dropdown-content">
       <a href="/donations/profile">Profile</a>
       <a href="/donations/fav_orgs">Favorited Organizations</a>
@@ -52,11 +52,12 @@
 
 <style>
   body {
-    background-color: #D3D3D3;
-  }
+    background-color: #eeeeee;
+    height: 100vh;
+    width: 100vw;
 
-  body {
-    margin: 0;
+    display: flex;
+    flex-direction: column;
   }
 
   ul.topnav {
@@ -65,7 +66,6 @@
     padding: 0;
     background-color: #333;
     position: fixed;
-    top: -30;
     width: 100%;
     z-index: 1;
   }
@@ -131,19 +131,12 @@
   }
 
 
-  body {
-    background-color: #eeeeee;
-    width: 80px;
-    text-align: center;
-  }
-
   img {
     display: block;
     width: 80px;
     margin: 30px auto;
     box-shadow: 0 5px 10px -7px #333333;
     border-radius: 50%;
-
   }
 
   .form {
@@ -180,7 +173,7 @@
     margin: 55px auto 10px auto;
   }
 
-  a {
+  .email {
     text-align: center;
     margin-top: 30px;
     color: #719BE6;
@@ -189,78 +182,149 @@
     display: inline-block;
   }
 
-  a:hover {
+  .email:hover {
     text-decoration: underline;
   }
 
-  .centered {
+  .footer-copyright {
+    height: 110px;
+    width: 100vw;
+
+    background-color: black;
+    color: white;
+    text-align: center;
+  }
+
+  .page-footer {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    /* bring your own prefixes */
-    transform: translate(-50%, -50%);
+    bottom: 0;
+  }
+
+  .page-footer2 {
+    position: relative;
+    bottom: 0;
+  }
+
+  .authors {
+    margin-top: 1vh;
+  }
+
+  .page-container {
+    position: relative;
+    min-height: 100vh;
+  }
+
+  .org-buttons {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
   }
 </style>
 
-<body>
-  <!--Grid row-->
-  <div class="centered" style="margin-top: 15em;">
-    <h2 style="font-family:sans-serif;">Spotlight</h2>
-    <div style="display: flex; justify-content: space-evenly;">
-      {% if list_of_organizations %}
-      {% for Organization in list_of_organizations %}
-      <div style="width:50%" >
-        <!-- Card -->
-        <div class="card">
+<div class="page-container">
 
-          <!--Card image-->
-          <div class="view overlay">
-            {% if Organization.organization_img_link %}
-            <img class="card-img-top" src="{{Organization.organization_img_link}}" alt="Card image cap"
-              style="height:12vmax;">
-            {% else %}
-            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap"
-              style="height:12vmax;">
-            {% endif %}
-            <a href="#!">
-              <div class="mask rgba-white-slight"></div>
-            </a>
+  <body>
+    <!--Grid row-->
+    <div class="form-container container center" style="width:800px; margin-top: 100px; margin-left:320px;">
+      <h2 style="font-family:sans-serif; text-align:center;">Spotlight</h2>
+      <div id="listContainer" class="row row-cols-1 row-cols-md-2" data-lengthOfList='{{ list_length }}'>
+        {% if list_of_organizations %}
+        {% for Organization in list_of_organizations %}
+        <div class="col mb-4">
+          <!-- Card -->
+          <div class="card">
+
+            <!--Card image-->
+            <div class="view overlay">
+              {% if Organization.organization_img_link %}
+              <img class="card-img-top" src="{{Organization.organization_img_link}}" alt="Card image cap"
+                style="height:12vmax;">
+              {% else %}
+              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg"
+                alt="Card image cap" style="height:12vmax;">
+              {% endif %}
+              <a href="#!">
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+
+            <!--Card content-->
+            <div id="cardContent-{{ forloop.counter0 }}" class="card-body"
+              data-fundsGoal='{{ Organization.fundsGoal }}'>
+
+              <!--Title-->
+              <h4 style="text-align: center;" class="card-title">{{ Organization.organization_text }}</h4>
+              <!--Text-->
+              <!-- <p class="card-text">{{ Organization.description_text }}</p> -->
+              <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+              <div class="org-buttons">
+                <a href="{% url 'donations:org_description' Organization.id %}" type="button"
+                  class="btn btn-light-blue btn-md">Read more</a>
+                <a href="{% url 'donations:checkout' Organization.id  %}" type="button"
+                  class="btn btn-light-blue btn-md">Donate</a>
+              </div>
+              <form method="POST" action="{% url 'donations:add_fav_org' Organization.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-grey btn-md">Add To Favorites</button>
+              </form>
+              <div><span id="totalRaised" value="{{ Organization.fundsRaised }}"> ${{ Organization.fundsRaised }} out of
+                  ${{ Organization.fundsGoal }} raised</span></div>
+              <div class="progbar-{{ forloop.counter0 }}" id="progressbar-{{ forloop.counter0 }}"
+                value="{{ Organization.fundsRaised }}" data-totalRasied="5"></div>
+            </div>
+
           </div>
-
-          <!--Card content-->
-          <div id="cardContent-{{ forloop.counter0 }}" class="card-body" data-fundsGoal='{{ Organization.fundsGoal }}'>
-
-            <!--Title-->
-            <h4 class="card-title">{{ Organization.organization_text }}</h4>
-            <!--Text-->
-            <!-- <p class="card-text">{{ Organization.description_text }}</p> -->
-            <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-            <a href="{% url 'donations:org_description' Organization.id %}"><button type="button"
-                class="btn btn-light-blue btn-md">Read more</button></a>
-            <a href="{% url 'donations:checkout' Organization.id  %}" type="button"
-              class="btn btn-light-blue btn-md">Donate</a>
-            <form method="POST" action="{% url 'donations:add_fav_org' Organization.id %}">
-              {% csrf_token %}
-              <button type="submit" class="btn btn-grey btn-md">Add To Favorites</button>
-            </form>
-            <div><span id="totalRaised" value="{{ Organization.fundsRaised }}"> ${{ Organization.fundsRaised }} out of
-                ${{ Organization.fundsGoal }} raised</span></div>
-            <div class="progbar-{{ forloop.counter0 }}" id="progressbar-{{ forloop.counter0 }}"
-              value="{{ Organization.fundsRaised }}" data-totalRasied="5"></div>
-          </div>
+          <!-- Card -->
         </div>
-        <!-- Card -->
+        {% endfor %}
       </div>
-      {% endfor %}
-      {% else %}
-      <p>No organizations are available.</p>
-      {% endif %}
+
     </div>
-    <br>
-    <div style="margin-bottom: 20em; text-align: left;"><span style="text-align: left; ">{{ spotlighted_org.spotlight_info }}</span></div>
-    <br>
-  </div>
+    <!--Grid row-->
+  </body>
+
+  <footer class="page-footer2 unique-color-dark">
+    <div class=footer-copyright text-right py-3>
+      <div class="authors">
+        <small>Authors: Noal Zyglowicz, Wan Li, Rohith Jampani, Liana Poon</small><br />
+      </div>
+      <small>
+        <a class="email" href="mailto:ntz3sw@virginia.edu">ntz3sw@virginia.edu | </a>
+        <a class="email" href="mailto:wl9wgc@virginia.edu">wl9wgc@virginia.edu | </a>
+        <a class="email" href="mailto:rvj8uc@virginia.edu">rvj8uc@virginia.edu | </a>
+        <a class="email" href="mailto:lwp2fy@virginia.edu">lwp2fy@virginia.edu</a>
+      </small><br /><small>&copy;
+        Copyright 2020, MicroDonations</small>
+    </div>
+  </footer>
+
+  {% else %}
+  <p>No organizations are available.</p>
+
+</div>
+
+</div>
+<!--Grid row-->
 </body>
+
+<footer class="page-footer unique-color-dark">
+  <div class=footer-copyright text-right py-3>
+    <div class="authors">
+      <small>Authors: Noal Zyglowicz, Wan Li, Rohith Jampani, Liana Poon</small><br />
+    </div>
+    <small>
+      <a class="email" href="mailto:ntz3sw@virginia.edu">ntz3sw@virginia.edu | </a>
+      <a class="email" href="mailto:wl9wgc@virginia.edu">wl9wgc@virginia.edu | </a>
+      <a class="email" href="mailto:rvj8uc@virginia.edu">rvj8uc@virginia.edu | </a>
+      <a class="email" href="mailto:lwp2fy@virginia.edu">lwp2fy@virginia.edu</a>
+    </small><br /><small>&copy;
+      Copyright 2020, MicroDonations</small>
+  </div>
+</footer>
+{% endif %}
+</div>
 
 <script>
 
@@ -278,11 +342,5 @@
   });
 
 </script>
-
-<footer class="page-footer unique-color-dark"
-  style="height: 110px; width: 100vw; position: absolute; background-color: black; color: white">
-  <small>Author: names </small><br /><small><a href="mailto:rvj8uc@virginia.edu">emails</a></small><br /><small>&copy;
-    Copyright 2020, names</small>
-</footer>
 
 </html>

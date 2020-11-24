@@ -50,14 +50,16 @@
   </li>
 </ul>
 
-
 <style>
   body {
-    background-color: #D3D3D3;
-  }
+    background-color: #eeeeee;
+    height: 100vh;
+    width: 100vw;
 
-  body {
-    margin: 0;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
   }
 
   ul.topnav {
@@ -66,7 +68,6 @@
     padding: 0;
     background-color: #333;
     position: fixed;
-    top: -30;
     width: 100%;
     z-index: 1;
   }
@@ -131,58 +132,24 @@
     display: block;
   }
 
-
-  body {
-    background-color: #eeeeee;
-    width: 80px;
-    text-align: center;
-  }
-
   img {
-    display: block;
-    width: 100%;
-    height: auto;
-    margin: 30px auto;
-    box-shadow: 0 5px 10px -7px #333333;
-    border-radius: 50%;
-
+    width: 30vw;
+    max-height: 70vh;
+    margin-bottom: 3vh;
   }
 
-  .form {
-    background-color: #ffffff;
-    width: 500px;
-    margin: 50px auto 10px auto;
-    padding: 30px;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 10px -3px #333;
-    text-align: center;
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
-  input {
-    border-radius: 100px;
-    padding: 10px 15px;
-    width: 50%;
-    border: 1px solid #D9D9D9;
-    outline: none;
-    display: block;
-    margin: 20px auto 20px auto;
+  .authors {
+    margin-top: 1vh;
   }
 
-  button {
-    border-radius: 100px;
-    border: none;
-    background: #719BE6;
-    width: 50%;
-    padding: 10px;
-    color: #FFFFFF;
-    margin-top: 25px;
-    box-shadow: 0 2px 10px -3px #719BE6;
-    display: block;
-    margin: 55px auto 10px auto;
-  }
-
-  a {
+  .email {
     text-align: center;
     margin-top: 30px;
     color: #719BE6;
@@ -191,37 +158,65 @@
     display: inline-block;
   }
 
-  a:hover {
+  .email:hover {
     text-decoration: underline;
   }
 
-  .centered {
+  .footer-copyright {
+    height: 110px;
+    width: 100vw;
+    position: relative;
+    background-color: black;
+    color: white;
+    text-align: center;
+    bottom: 0;
+  }
+
+  .page-footer {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    /* bring your own prefixes */
-    transform: translate(-50%, -50%);
+    bottom: 0;
   }
 </style>
 
 <body>
 
-  <div class="centered" style="margin-top: -100px;"><img src="https://i.imgur.com/ARKtpJh.png">
-    <h1 id="motto">Where making a small donation makes a big difference</h1>
+  <div class="centered">
+    <img src="https://i.imgur.com/ARKtpJh.png" />
+    <h1 class="motto">Where making a small donation makes a big difference</h1>
+    <br>
+    <h5>This application is for anyone wishing to donate to an organization or
+      volunteer for random tasks offered by other users. Click on the Donation Organizations tab in the navigation
+      bar above if you would like to donate to a specific organization listed already or you can add an organization
+      for other users to donate to. If you click on the tasks tab above then the list of tasks posted by other users
+      will be displayed and you can post your own task that you would want someone to volunteer for or you can
+      volunteer for a specific task.</h5>
+
   </div>
+
   <script>
     $(document).ready(function () {
       $('img').hide();
       $('#motto').hide();
+      $('card-title text-primary').hide();
       $('#motto').fadeIn(2000);
       $('img').fadeIn(2000);
+      $('card-title text-primary').fadeIn(2000);
     });
   </script>
 </body>
-<footer class="page-footer unique-color-dark"
-  style="height: 110px; width: 100vw; position: absolute; background-color: black; color: white">
-  <small>Author: names </small><br /><small><a href="mailto:rvj8uc@virginia.edu">emails</a></small><br /><small>&copy;
-    Copyright 2020, names</small>
+<footer class="page-footer unique-color-dark">
+  <div class=footer-copyright text-right py-3>
+    <div class="authors">
+      <small>Authors: Noal Zyglowicz, Wan Li, Rohith Jampani, Liana Poon</small><br />
+    </div>
+    <small>
+      <a class="email" href="mailto:ntz3sw@virginia.edu">ntz3sw@virginia.edu | </a>
+      <a class="email" href="mailto:wl9wgc@virginia.edu">wl9wgc@virginia.edu | </a>
+      <a class="email" href="mailto:rvj8uc@virginia.edu">rvj8uc@virginia.edu | </a>
+      <a class="email" href="mailto:lwp2fy@virginia.edu">lwp2fy@virginia.edu</a>
+    </small><br /><small>&copy;
+      Copyright 2020, MicroDonations</small>
+  </div>
 </footer>
 
 </html>

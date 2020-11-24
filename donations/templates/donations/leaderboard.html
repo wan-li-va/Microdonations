@@ -71,7 +71,7 @@
     <li><a href="/donations/contact">Contact us</a></li>
 
     <li class="dropdown left">
-        <a href="javascript:void(0)" class="dropbtn">Profile Information </i></a>
+        <a href="javascript:void(0)" class="active dropbtn">Profile Information </i></a>
         <div class="dropdown-content">
             <a href="/donations/profile">Profile</a>
             <a href="/donations/fav_orgs">Favorited Organizations</a>
@@ -83,7 +83,16 @@
 
 
 <style>
-  
+    body {
+        background-color: #eeeeee;
+        height: 100vh;
+        width: 100vw;
+
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+
     ul.topnav {
         list-style-type: none;
         margin: 0;
@@ -155,12 +164,6 @@
         display: block;
     }
 
-
-    body {
-        background-color: #eeeeee;
-        text-align: center;
-    }
-
     .wrapper {
         display: flex;
         flex-direction: column;
@@ -194,91 +197,131 @@
         padding: 5vw;
     }
 
-      .column {
-    float: left;
-    width: 33.33%;
-    padding: 20px;
-  }
+    .column {
+        float: left;
+        width: 33.33%;
+        padding: 20px;
+    }
 
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
 
-  .centered {
-    width: 100%;
-    margin-bottom: 150px;
-    margin-top: 50px;
-    padding: 20px;
-    background-color: whitesmoke;
-    border: 3px solid darkgray;
-    padding-top: 30px;
-    padding-bottom: 30px;
-  }
+    .centered {
+        width: 100%;
+        margin-bottom: 150px;
+        margin-top: 50px;
+        padding: 20px;
+        background-color: whitesmoke;
+        border: 3px solid darkgray;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        text-align: center;
+    }
+
+    .email {
+        text-align: center;
+        margin-top: 30px;
+        color: #719BE6;
+        text-decoration: none;
+        padding: 5px;
+        display: inline-block;
+    }
+
+    .email:hover {
+        text-decoration: underline;
+    }
+
+    .footer-copyright {
+        height: 110px;
+        width: 100vw;
+        position: relative;
+        background-color: black;
+        color: white;
+        text-align: center;
+        bottom: 0;
+    }
+
+    .authors {
+        margin-top: 1vh;
+    }
 </style>
 
 
 <body>
-  <div class="wrapper">
+    <div class="wrapper">
 
-      <div class="centered" >
-        <h1>Leaderboard!</h1>
+        <div class="centered">
+            <h1 style="font-family:sans-serif;">Leaderboard!</h1>
 
 
-        <div class="row">
+            <div class="row">
 
-          <div class="column">
-          <header class="bg-primary p-4 text-white text-center"><h3>Most Money Raised</h3></header>
-          </br>
-          {% if orgs_most_money %}
-          <ol type = "1">
-          {% for Organization in orgs_most_money %}
-          <li>{{ Organization.organization_text }} - {{ Organization.fundsRaised}}</li>
-          {% endfor %}
-          </ol>
-          {% endif %}
-          </div>
+                <div class="column">
+                    <header class="bg-primary p-4 text-white text-center">
+                        <h3>Most Money Raised</h3>
+                    </header>
+                    </br>
+                    {% if orgs_most_money %}
+                    <ol type="1">
+                        {% for Organization in orgs_most_money %}
+                        <li>{{ Organization.organization_text }} - {{ Organization.fundsRaised}}</li>
+                        {% endfor %}
+                    </ol>
+                    {% endif %}
+                </div>
 
-          <div class="column">
-          <header class="bg-success p-4 text-white text-center"><h3>Most Money Donated</h3></header>
-          </br>
-          {% if profiles_most_money %}
-          <ol type = "1">
-          {% for Profile in profiles_most_money %}
-          <li>{{ Profile.user.username }} - ${{ Profile.totalDonated }}</li>
-          {% endfor %}
-          </ol>
-          {% endif %}
-          </div>
+                <div class="column">
+                    <header class="bg-success p-4 text-white text-center">
+                        <h3>Most Money Donated</h3>
+                    </header>
+                    </br>
+                    {% if profiles_most_money %}
+                    <ol type="1">
+                        {% for Profile in profiles_most_money %}
+                        <li>{{ Profile.user.username }} - ${{ Profile.totalDonated }}</li>
+                        {% endfor %}
+                    </ol>
+                    {% endif %}
+                </div>
 
-          <div class="column">
-          <header class="bg-info p-4 text-white text-center"><h3>Most Tasks Completed</h3></header>
-          </br>
-          {% if profiles_most_tasks %}
-          <ol type = "1">
-          {% for Profile in profiles_most_tasks %}
-          <li>{{ Profile.user.username }} - {{ Profile.tasksCompleted }}</li>
-          {% endfor %}
-          </ol>
-          {% endif %}
-          </div>
+                <div class="column">
+                    <header class="bg-info p-4 text-white text-center">
+                        <h3>Most Tasks Completed</h3>
+                    </header>
+                    </br>
+                    {% if profiles_most_tasks %}
+                    <ol type="1">
+                        {% for Profile in profiles_most_tasks %}
+                        <li>{{ Profile.user.username }} - {{ Profile.tasksCompleted }}</li>
+                        {% endfor %}
+                    </ol>
+                    {% endif %}
+                </div>
 
-      </div>
+            </div>
 
-  </div>
+        </div>
 
 </body>
 
 
 
 
-<footer class="page-footer unique-color-dark"
-    style="height: 110px; width: 100vw; background-color: black; color: white">
-    <div class="footer-copyright" style="bottom: 0;">
-        <small>Author: names</small><br /><small><a
-                href="mailto:rvj8uc@virginia.edu">emails</a></small><br /><small>&copy;
-            Copyright 2020, names</small>
+<footer class="page-footer unique-color-dark">
+    <div class=footer-copyright text-right py-3>
+        <div class="authors">
+            <small>Authors: Noal Zyglowicz, Wan Li, Rohith Jampani, Liana Poon</small><br />
+        </div>
+        <small>
+            <a class="email" href="mailto:ntz3sw@virginia.edu">ntz3sw@virginia.edu | </a>
+            <a class="email" href="mailto:wl9wgc@virginia.edu">wl9wgc@virginia.edu | </a>
+            <a class="email" href="mailto:rvj8uc@virginia.edu">rvj8uc@virginia.edu | </a>
+            <a class="email" href="mailto:lwp2fy@virginia.edu">lwp2fy@virginia.edu</a>
+        </small><br /><small>&copy;
+            Copyright 2020, MicroDonations</small>
     </div>
 </footer>
 
