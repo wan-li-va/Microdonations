@@ -1,11 +1,11 @@
 
 
 # Create your tests here.
-import pytest
 from django.test import TestCase
 from django.test import RequestFactory, TestCase
 from .views import index, login, donations, tasks, profile, edit_profile, organizationform, add_organization, org_description, task_description
 from .models import Organization, Task, Profile
+
 
 class ModelTestCase(TestCase):
     def setUp(self):
@@ -33,6 +33,7 @@ class ModelTestCase(TestCase):
         self.assertEqual(Profile.profile_bio, "profile_bio")
         self.assertEqual(Profile.profile_location, "profile_location")
         self.assertEqual(Profile.profile_phone, "profile_phone")
+
 
 class LoginTestCase(TestCase):
 
@@ -112,10 +113,3 @@ class ViewsTest(TestCase):
 
     #     context = view.get_context_data()
     #     self.assertIn('list_of_tasks', context)
-
-
-    
-
-
-
-

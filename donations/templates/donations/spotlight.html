@@ -192,16 +192,24 @@
   a:hover {
     text-decoration: underline;
   }
+
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+  }
 </style>
 
 <body>
   <!--Grid row-->
-  <div class="form-container container center" style="width:800px; margin-top: 100px; margin-left:320px;">
-    <h2 style="font-family:sans-serif; text-align:center;">Spotlight</h2>
-    <div id="listContainer" class="row row-cols-1 row-cols-md-2" data-lengthOfList='{{ list_length }}'>
+  <div class="centered" style="margin-top: 15em;">
+    <h2 style="font-family:sans-serif;">Spotlight</h2>
+    <div style="display: flex; justify-content: space-evenly;">
       {% if list_of_organizations %}
       {% for Organization in list_of_organizations %}
-      <div class="col mb-4">
+      <div style="width:50%" >
         <!-- Card -->
         <div class="card">
 
@@ -240,7 +248,6 @@
             <div class="progbar-{{ forloop.counter0 }}" id="progressbar-{{ forloop.counter0 }}"
               value="{{ Organization.fundsRaised }}" data-totalRasied="5"></div>
           </div>
-
         </div>
         <!-- Card -->
       </div>
@@ -249,9 +256,10 @@
       <p>No organizations are available.</p>
       {% endif %}
     </div>
-
+    <br>
+    <div style="margin-bottom: 20em; text-align: left;"><span style="text-align: left; ">{{ spotlighted_org.spotlight_info }}</span></div>
+    <br>
   </div>
-  <!--Grid row-->
 </body>
 
 <script>
@@ -272,11 +280,9 @@
 </script>
 
 <footer class="page-footer unique-color-dark"
-  style="height: 110px; width: 100vw; background-color: black; color: white">
-  <div class="footer-copyright" style="margin-top: 650px;">
-    <small>Author: names</small><br /><small><a href="mailto:rvj8uc@virginia.edu">emails</a></small><br /><small>&copy;
-      Copyright 2020, names</small>
-  </div>
+  style="height: 110px; width: 100vw; position: absolute; background-color: black; color: white">
+  <small>Author: names </small><br /><small><a href="mailto:rvj8uc@virginia.edu">emails</a></small><br /><small>&copy;
+    Copyright 2020, names</small>
 </footer>
 
 </html>

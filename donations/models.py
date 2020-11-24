@@ -8,7 +8,7 @@ from django.utils import timezone
 
 class Organization(models.Model):
     organization_text = models.CharField(max_length=200)
-    description_text = models.CharField(max_length=200)
+    description_text = models.CharField(max_length=2000)
     fundsRaised = models.DecimalField(
         null=True, blank=True, default=0.00, max_digits=10, decimal_places=2)
     fundsGoal = models.DecimalField(
@@ -16,6 +16,7 @@ class Organization(models.Model):
     organization_img_link = models.CharField(
         max_length=1000, default="")
     is_spotlighted = models.BooleanField(default=False)
+    spotlight_info = models.CharField(max_length=2000, default="")
 
     def __str__(self):
         return self.organization_text
@@ -23,7 +24,7 @@ class Organization(models.Model):
 
 class Task(models.Model):
     task_text = models.CharField(max_length=200)
-    description_text = models.CharField(max_length=200)
+    description_text = models.CharField(max_length=2000)
     is_done = models.BooleanField(default=False)
     task_owner = models.ForeignKey(
         User, on_delete=models.CASCADE, default=None)
