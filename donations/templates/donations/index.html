@@ -12,7 +12,6 @@
     integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="css/addons-pro/cards-extended.min.css" rel="stylesheet">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -23,39 +22,30 @@
   <!-- Material Design Bootstrap -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
     integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
 </head>
 
-<ul class="nav nav-pills" style="background-color: black; padding: 10px; margin-top: -20px;">
-  <li class="nav-item">
-    <a class="active" href="/donations/">Home</a>
-  </li>
-  <li class="nav-item">
-    {% if user.is_authenticated %}
-    <a href="/logout">Logout</a>
-    {% else %}
-    <a href="/">Login</a>
-    {% endif %}
-  </li>
-  <li><a href="/donations/donationslist">Donation Organizations</a></li>
+<ul class="topnav">
+  <li><a class="active" href="/">Home</a></li>
+  {% if user.is_authenticated %}
+  <li><a href="/logout">Logout</a></li>
+  {% else %}
+  <li><a href="/login">Login</a></li>
+  {% endif %}
+  <li><a href="/donations/donationslist">Donation organizations</a></li>
   <li><a href="/donations/taskslist">Tasks</a>
-  <li><a href="">Contact us</a></li>
-  <li class="nav-item dropdown ml-auto" style="margin-right: 30px;">
-    <a href="/donations/profile" class="nav-link dropdown-toggle"
-      style="max-width: 200px; margin-left: -10px; padding-bottom: 10px;" data-toggle="dropdown">Profile Information</a>
-    <div class="dropdown-menu dropdown-menu-right"
-      style="margin-left: 35px; max-width: 250px; text-align: left; padding-right: 30px; padding-bottom: 30px;">
-      <a href="/donations/profile" class="dropdown-item">Profile</a>
-      <a href="/donations/fav_orgs" class="dropdown-item">Favorite Organizations</a>
-      <a href="/donations/leaderboard" class="dropdown-item">Leaderboard</a>
+  <li><a href="/donations/contact">Contact us</a></li>
+
+  <li class="dropdown left">
+    <a href="javascript:void(0)" class="dropbtn">Profile Information </i></a>
+    <div class="dropdown-content">
+      <a href="/donations/profile">Profile</a>
+      <a href="/donations/fav_orgs">Favorited Organizations</a>
+      <a href="/donations/spotlight">Spotlight Page</a>
+      <a href="/donations/leaderboard">Leaderboard</a>
     </div>
   </li>
 </ul>
@@ -69,6 +59,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    align-items: center;
   }
 
   ul.topnav {
@@ -81,7 +72,24 @@
     z-index: 1;
   }
 
-  ul.nav nav-pills li a.active {
+  ul.topnav li {
+    float: left;
+  }
+
+  ul.topnav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  ul.topnav li:hover a:not(.active) {
+    background-color: #D3D3D3;
+    color: #000;
+  }
+
+  ul.topnav li a.active {
     background-color: #D2691E;
     color: white;
   }
@@ -124,11 +132,16 @@
     display: block;
   }
 
+  img {
+    width: 30vw;
+    max-height: 70vh;
+    margin-bottom: 3vh;
+  }
+
   .centered {
     position: absolute;
     top: 50%;
     left: 50%;
-    /* bring your own prefixes */
     transform: translate(-50%, -50%);
   }
 
@@ -167,20 +180,17 @@
 
 <body>
 
-  <div class="centered" style="margin-top: -100px; position: absolute;"><img src="https://i.imgur.com/ARKtpJh.png">
-    <h1 id="motto">Where making a small donation makes a big difference</h1>
+  <div class="centered">
+    <img src="https://i.imgur.com/ARKtpJh.png" />
+    <h1 class="motto">Where making a small donation makes a big difference</h1>
     <br>
-    <div class="card bg-light centered border"
-      style="max-width: 100vw; position: absolute; bottom: 5px; margin-top:200px;">
-      <div class="card-body" style="width: 100vw;">
-        <h5 class="card-title text-primary">This application is for anyone wishing to donate to an organization or
-          volunteer for random tasks offered by other users. Click on the Donation Organizations tab in the navigation
-          bar above if you would like to donate to a specific organization listed already or you can add an organization
-          for other users to donate to. If you click on the tasks tab above then the list of tasks posted by other users
-          will be displayed and you can post your own task that you would want someone to volunteer for or you can
-          volunteer for a specific task.</h5>
-      </div>
-    </div>
+    <h5>This application is for anyone wishing to donate to an organization or
+      volunteer for random tasks offered by other users. Click on the Donation Organizations tab in the navigation
+      bar above if you would like to donate to a specific organization listed already or you can add an organization
+      for other users to donate to. If you click on the tasks tab above then the list of tasks posted by other users
+      will be displayed and you can post your own task that you would want someone to volunteer for or you can
+      volunteer for a specific task.</h5>
+
   </div>
 
   <script>
