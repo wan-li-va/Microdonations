@@ -82,3 +82,5 @@ MIT License and copyright 2018 Twitter
 Apache 2.0 License
 ## PayPal API
 PayPal Developer Agreement
+
+Code sourced from other sources such as incorporating css desgins is cited where due in the source where it is used
