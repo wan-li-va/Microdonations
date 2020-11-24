@@ -175,13 +175,30 @@
   .authors {
     margin-top: 1vh;
   }
+
+  .page-footer {
+    position: absolute;
+    bottom: 0;
+  }
+
+  .page-footer2 {
+    position: relative;
+    bottom: 0;
+  }
+
+  .notlogged {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 </style>
 
 <body>
   <div class="form-container container center" style="margin-top: 80px;">
     {% if user.is_authenticated %}
-    <h2>Welcome to your profile information, {{ user.first_name }}!</h2>
-    <div class="wrapper">
+    <h2 style="font-family:sans-serif;">Welcome to your profile information, {{ user.first_name }}!</h2>
+    <div class=" wrapper">
       <div>
         <h4>Name:</h4>
       </div>
@@ -215,13 +232,35 @@
       <div>
         <a class="btn btn-primary" href="/donations/profile/edit" role="button">Edit</a>
       </div>
-      {% else %}
-      <div style="align-content: center; width: 500px;">
-        <p>You are not logged in</p>
-      </div>
-      {% endif %}
     </div>
   </div>
+</body>
+
+<footer class="page-footer2 unique-color-dark">
+  <div class=footer-copyright text-right py-3>
+    <div class="authors">
+      <small>Authors: Noal Zyglowicz, Wan Li, Rohith Jampani, Liana Poon</small><br />
+    </div>
+    <small>
+      <a class="email" href="mailto:ntz3sw@virginia.edu">ntz3sw@virginia.edu | </a>
+      <a class="email" href="mailto:wl9wgc@virginia.edu">wl9wgc@virginia.edu | </a>
+      <a class="email" href="mailto:rvj8uc@virginia.edu">rvj8uc@virginia.edu | </a>
+      <a class="email" href="mailto:lwp2fy@virginia.edu">lwp2fy@virginia.edu</a>
+    </small><br /><small>&copy;
+      Copyright 2020, MicroDonations</small>
+  </div>
+</footer>
+
+{% else %}
+<div style="align-content: center; ">
+  <div class="notlogged">
+    <h2 style="font-family:sans-serif;">Profile</h2>
+    <p>You are not logged in. Please <a href="/login">log in!</a></p>
+  </div>
+</div>
+
+</div>
+</div>
 </body>
 
 <footer class="page-footer unique-color-dark">
@@ -238,5 +277,6 @@
       Copyright 2020, MicroDonations</small>
   </div>
 </footer>
+{% endif %}
 
 </html>

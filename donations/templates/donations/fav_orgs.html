@@ -39,7 +39,7 @@
   <li><a href="/donations/contact">Contact us</a></li>
 
   <li class="dropdown left">
-    <a href="javascript:void(0)" class="dropbtn">Profile Information </i></a>
+    <a href="javascript:void(0)" class="active dropbtn">Profile Information </i></a>
     <div class="dropdown-content">
       <a href="/donations/profile">Profile</a>
       <a class="active" href="/donations/fav_orgs">Favorited Organizations</a>
@@ -237,7 +237,7 @@
     <!--Grid row-->
     <div style="justify-content: center; margin-top:5em;" class="form-container container center"
       style="width:100vw; margin: 100px 13vw 0; ">
-      <h2 style="font-family:sans-serif; text-align:center;">Favorite Organizations</h2>
+      <h2 style="font-family:sans-serif; text-align:center; margin-bottom: 5vh;">Favorite Organizations</h2>
       <div id="listContainer" class="row row-cols-1 row-cols-md-3" data-lengthOfList='{{ list_length }}'>
         {% if list_of_organizations %}
         {% for Organization in list_of_organizations %}
@@ -310,7 +310,7 @@
   </footer>
 
   {% else %}
-  <p>No organizations are available.</p>
+  <p>No organizations are available. Please <a href="/login">log in!</a></p>
 
 </div>
 
