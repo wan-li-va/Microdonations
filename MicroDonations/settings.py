@@ -33,7 +33,7 @@ if os.path.isfile(dotenv_file):
 SECRET_KEY = 'oe6&1cxt4r=rrs&&mfrzemmf4iq9$)lh7^x6nnv2x$sk^hrt(7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['https://micro-donations-cs3240.herokuapp.com/']
 
@@ -153,7 +153,7 @@ AUTHENTICATION_BACKENDS = (
 )
 
 SITE_ID = 1
-LOGIN_REDIRECT_URL = '/donations'
+LOGIN_REDIRECT_URL = '/donations/donationslist/'
 
 
 SOCIALACCOUNT_PROVIDERS = {

@@ -23,11 +23,11 @@
 </head>
 
 <ul class="topnav">
-  <li><a href="/donations/">Home</a></li>
+  <li><a href="/">Home</a></li>
   {% if user.is_authenticated %}
   <li><a href="/logout">Logout</a></li>
   {% else %}
-  <li><a href="/">Login</a></li>
+  <li><a href="/login">Login</a></li>
   {% endif %}
   <li><a href="/donations/donationslist">Donation organizations</a></li>
   <li><a class="active" href="/donations/taskslist">Tasks</a>
@@ -187,6 +187,14 @@
   a:hover {
     text-decoration: underline;
   }
+
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+  }
 </style>
 
 <body>
@@ -224,7 +232,11 @@
                 {% if Task.is_done %}
                 <button type="button" disable="true" class="btn btn-grey btn-md">Task Done</button>
                 {% else %}
+                {% if user.is_authenticated %}
                 <button type="submit" class="btn btn-blue btn-md">Do Task</button>
+                {% else %}
+                <button type="submit" class="btn btn-blue btn-md" disabled>Do Task</button>
+                {% endif %}
                 {% endif %}
               </form>
             </div>

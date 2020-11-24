@@ -28,11 +28,11 @@
 </head>
 
 <ul class="topnav">
-  <li><a href="/donations/">Home</a></li>
+  <li><a href="/">Home</a></li>
   {% if user.is_authenticated %}
   <li><a href="/logout">Logout</a></li>
   {% else %}
-  <li><a href="/">Login</a></li>
+  <li><a href="/login">Login</a></li>
   {% endif %}
   <li><a class="active" href="/donations/donationslist">Donation organizations</a></li>
   <li><a href="/donations/taskslist">Tasks</a>
@@ -66,7 +66,7 @@
     background-color: #333;
     position: fixed;
     top: -30;
-    width: 100%;
+    width: 100vw;
     z-index: 1;
   }
 
@@ -133,7 +133,7 @@
 
   body {
     background-color: #eeeeee;
-    width: 80px;
+    width: 100vw;
     text-align: center;
   }
 
@@ -148,7 +148,7 @@
 
   .form {
     background-color: #ffffff;
-    width: 500px;
+    width: 100vw;
     margin: 50px auto 10px auto;
     padding: 30px;
     border-radius: 8px;
@@ -192,16 +192,25 @@
   a:hover {
     text-decoration: underline;
   }
+
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+  }
 </style>
 
 <body>
   <!--Grid row-->
-  <div class="form-container container center" style="width:800px; margin-top: 100px; margin-left:320px;">
+  <div style="justify-content: center; margin-top:5em;" class="form-container container center" style="width:100vw; margin: 100px 13vw 0; ">
     <h2 style="font-family:sans-serif; text-align:center;">Organizations</h2>
     {% if user.is_authenticated %}
-    <a class="btn btn-primary" href="/donations/donationslist/organizationform" role="button">Add Organization</a>
+    <a class="btn btn-primary" href="/donations/donationslist/organizationform" role="button"
+      style="margin-bottom: 5vh;">Add Organization</a>
     {% endif %}
-    <div id="listContainer" class="row row-cols-1 row-cols-md-2" data-lengthOfList='{{ list_length }}'>
+    <div id="listContainer" class="row row-cols-1 row-cols-md-3" data-lengthOfList='{{ list_length }}'>
       {% if list_of_organizations %}
       {% for Organization in list_of_organizations %}
       <div class="col mb-4">

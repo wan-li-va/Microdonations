@@ -17,14 +17,16 @@ from django.contrib import admin
 from django.urls import include, path
 from django.views.generic import TemplateView  # <--
 
-from . import views
+from donations import views
+from . import views as viewsMicroDonations
 
 urlpatterns = [
-    path('',
+    path('', views.index, name='index'),
+    path('login',
          TemplateView.as_view(template_name="donations/login.html"), name="login"),  # <--
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),  # <--
     path('donations/', include('donations.urls')),
-    path('logout/', views.logout_view),
+    path('logout/', viewsMicroDonations.logout_view),
 
 ]

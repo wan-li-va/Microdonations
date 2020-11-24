@@ -2,7 +2,7 @@
 
 <head>
 
-  <title>Donation Organizations</title>
+  <title>Favorite Organizations</title>
 
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -28,11 +28,11 @@
 </head>
 
 <ul class="topnav">
-  <li><a href="/donations/">Home</a></li>
+  <li><a href="/">Home</a></li>
   {% if user.is_authenticated %}
   <li><a href="/logout">Logout</a></li>
   {% else %}
-  <li><a href="/">Login</a></li>
+  <li><a href="/login">Login</a></li>
   {% endif %}
   <li><a href="/donations/donationslist">Donation organizations</a></li>
   <li><a href="/donations/taskslist">Tasks</a>
@@ -66,7 +66,7 @@
     background-color: #333;
     position: fixed;
     top: -30;
-    width: 100%;
+    width: 100vw;
     z-index: 1;
   }
 
@@ -133,7 +133,7 @@
 
   body {
     background-color: #eeeeee;
-    width: 80px;
+    width: 100vw;
     text-align: center;
   }
 
@@ -148,7 +148,7 @@
 
   .form {
     background-color: #ffffff;
-    width: 500px;
+    width: 100vw;
     margin: 50px auto 10px auto;
     padding: 30px;
     border-radius: 8px;
@@ -192,13 +192,21 @@
   a:hover {
     text-decoration: underline;
   }
+
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+  }
 </style>
 
 <body>
   <!--Grid row-->
-  <div class="form-container container center" style="width:800px; margin-top: 100px; margin-left:320px;">
+  <div style="justify-content: center; margin-top:5em;" class="form-container container center" style="width:100vw; margin: 100px 13vw 0; ">
     <h2 style="font-family:sans-serif; text-align:center;">Favorite Organizations</h2>
-    <div id="listContainer" class="row row-cols-1 row-cols-md-2" data-lengthOfList='{{ list_length }}'>
+    <div id="listContainer" class="row row-cols-1 row-cols-md-3" data-lengthOfList='{{ list_length }}'>
       {% if list_of_organizations %}
       {% for Organization in list_of_organizations %}
       <div class="col mb-4">
@@ -231,10 +239,10 @@
                 class="btn btn-light-blue btn-md">Read more</button></a>
             <a href="{% url 'donations:checkout' Organization.id  %}" type="button"
               class="btn btn-light-blue btn-md">Donate</a>
-            <form method="POST" action="{% url 'donations:del_fav_org' Organization.id %}">
-              {% csrf_token %}
-              <button type="submit" class="btn btn-grey btn-md">Remove From Favorites</button>
-            </form>
+              <form method="POST" action="{% url 'donations:del_fav_org' Organization.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-grey btn-md">Remove From Favorites</button>
+              </form>
             <div><span id="totalRaised" value="{{ Organization.fundsRaised }}"> ${{ Organization.fundsRaised }} out of
                 ${{ Organization.fundsGoal }} raised</span></div>
             <div class="progbar-{{ forloop.counter0 }}" id="progressbar-{{ forloop.counter0 }}"
@@ -272,9 +280,10 @@
 </script>
 
 <footer class="page-footer unique-color-dark"
-  style="height: 110px; width: 100vw; bottom: 0; background-color: black; color: white">
+  style="height: 110px; width: 100vw; position: relative; background-color: black; color: white">
   <small>Author: names</small><br /><small><a href="mailto:rvj8uc@virginia.edu">emails</a></small><br /><small>&copy;
     Copyright 2020, names</small>
+
 </footer>
 
 </html>

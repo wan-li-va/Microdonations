@@ -30,11 +30,11 @@
 </head>
 
 <ul class="topnav">
-  <li><a href="/donations/">Home</a></li>
+  <li><a href="/">Home</a></li>
   {% if user.is_authenticated %}
   <li><a href="/logout">Logout</a></li>
   {% else %}
-  <li><a href="/">Login</a></li>
+  <li><a href="/login">Login</a></li>
   {% endif %}
   <li><a href="/donations/donationslist">Donation Organizations</a></li>
   <li><a href="/donations/taskslist">Tasks</a></li>
