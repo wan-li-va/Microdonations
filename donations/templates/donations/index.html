@@ -46,7 +46,7 @@
     <a href="/">Login</a>
     {% endif %}
   </li>
-  <li><a href="/donations/donationslist">Donation organizations</a></li>
+  <li><a href="/donations/donationslist">Donation Organizations</a></li>
   <li><a href="/donations/taskslist">Tasks</a>
   <li><a href="">Contact us</a></li>
   <li class="nav-item dropdown ml-auto" style="margin-right: 30px;">
@@ -139,19 +139,29 @@ a:hover {
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
 }
+
   </style>
 
 <body>
 
-  <div class="centered" style="margin-top: -100px;"><img src="https://i.imgur.com/ARKtpJh.png">
+  <div class="centered" style="margin-top: -100px; position: absolute;"><img src="https://i.imgur.com/ARKtpJh.png">
     <h1 id="motto">Where making a small donation makes a big difference</h1>
+    <br>
+    <div class="card bg-light centered border" style="max-width: 100vw; position: absolute; bottom: 5px; margin-top:200px;">
+      <div class="card-body" style="width: 100vw;">
+        <h5 class="card-title text-primary">This application is for anyone wishing to donate to an organization or volunteer for random tasks offered by other users.  Click on the Donation Organizations tab in the navigation bar above if you would like to donate to a specific organization listed already or you can add an organization for other users to donate to.  If you click on the tasks tab above then the list of tasks posted by other users will be displayed and you can post your own task that you would want someone to volunteer for or you can volunteer for a specific task.</h5>
+      </div>
+    </div>
   </div>
+
   <script>
     $(document).ready(function () {
       $('img').hide();
       $('#motto').hide();
+      $('card-title text-primary').hide();
       $('#motto').fadeIn(2000);
       $('img').fadeIn(2000);
+      $('card-title text-primary').fadeIn(2000);
     });
   </script>
 </body>
