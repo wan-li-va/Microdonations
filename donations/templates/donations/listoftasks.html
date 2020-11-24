@@ -125,24 +125,6 @@
     display: block;
   }
 
-  .form {
-    background-color: #ffffff;
-    width: 500px;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 10px -3px #333;
-    text-align: center;
-  }
-
-  button {
-    border-radius: 100px;
-    border: none;
-    background: #719BE6;
-    width: 100%;
-    color: #FFFFFF;
-    box-shadow: 0 2px 10px -3px #719BE6;
-  }
-
   .email {
     text-align: center;
     margin-top: 30px;
@@ -183,6 +165,10 @@
     position: relative;
     min-height: 100vh;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   .org-buttons {
@@ -198,7 +184,7 @@
 
   <body>
     <!--Grid row-->
-    <div class="form-container container center" style="width:800px; margin-top: 100px; margin-left:320px;">
+    <div class="form-container container center" style="width:800px; margin-top: 100px;">
       <h2 style="font-family:sans-serif; text-align:center;">Tasks</h2>
       {% if user.is_authenticated %}
       <a class="btn btn-primary" href="taskform" role="button">Add New Task</a>
@@ -223,8 +209,8 @@
 
               <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
               <div class="org-buttons">
-                <a href="{% url 'donations:task_description' Task.id %}" type="button"
-                  class="btn btn-light-blue btn-md">Read more</a>
+                <a style="margin-bottom: 3vh;" href="{% url 'donations:task_description' Task.id %}" type="button"
+                  class="btn btn-light-green btn-md">Read more</a>
 
                 <form method="POST" action="{% url 'donations:done_task' Task.id %}">
                   {% csrf_token %}
