@@ -53,7 +53,7 @@
 <style>
   body {
     background-color: #eeeeee;
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
 
     display: flex;
@@ -190,7 +190,7 @@
 
   <body>
     <!--Grid row-->
-    <div style="justify-content: center; width:100vw; margin-top: 100px;" class="form-container container center">
+    <div style="justify-content: center; width:100vw; margin-top: 10vh;" class="form-container container center">
       <h2 style="font-family:sans-serif; text-align:center;">Organizations</h2>
       {% if user.is_authenticated %}
       <a class="btn btn-primary" href="/donations/donationslist/organizationform" role="button"
