@@ -64,14 +64,16 @@ Spotlight shows a highlighted organization that has been selected for the admins
 ### Leaderboard
 Leaderboard shows the current top organizations, donaters, and task completers
 
-# Licensing Information:
+# Project Licensing Information:
 MIT License
 © 2020
 
 *Disclaimer*
 If you are a student who has found this repo, using code from this repo in another UVA CS class makes you liable for a potential Honor Offense 
 
-# Included Libraries and APIs
+# Framework, Libraries, and APIs
+## Django Framework
+3-clause BSD
 ## jQuery
 MIT License
 ## Bootstrap
